@@ -1,38 +1,9 @@
-# Created by .ignore support plugin (hsz.mobi)
-### CMake template
+# CMake files
 CMakeCache.txt
-CMakeFiles
-CMakeScripts
-Testing
-Makefile
-cmake_install.cmake
-install_manifest.txt
-compile_commands.json
-CTestTestfile.cmake
-### Example user template template
-### Example user template
+cmake-build-debug/
 
-# IntelliJ project files
-.idea
-*.iml
-out
-gen
+# CLion project files
+.idea/
 
-# WebApp
-/pi-webApp/.web-server-pid
-/pi-webApp/app/config/parameters.yml
-/pi-webApp/build/
-/pi-webApp/phpunit.xml
-/pi-webApp/var/*
-!/pi-webApp/var/cache
-/pi-webApp/var/cache/*
-!/pi-webAppvar/cache/.gitkeep
-!/pi-webApp/var/logs
-/pi-webApp/var/logs/*
-!/pi-webAppvar/logs/.gitkeep
-!/pi-webApp/var/sessions
-/pi-webApp/var/sessions/*
-!/pi-webAppvar/sessions/.gitkeep
-!/pi-webAppvar/SymfonyRequirements.php
-/pi-webApp/vendor/
-/pi-webApp/web/bundles/
+# Git files
+.git/

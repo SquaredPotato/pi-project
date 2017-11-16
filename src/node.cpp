@@ -13,23 +13,24 @@ void node::init(std::string name, int id, std::string address)
 	this ->location = std::move(address);
 }
 
-void node::delPin(unsigned long wpi)
+void node::delPin(int wpi)
 {
-	// Set them to an invalid value to indicate that the pin is unused
-	this->pins.at(wpi) = {-1, -1, -1, -1, -1};
+	this->pins.erase(wpi);
 
-	// Reset pin to defaults
+	// Reset gpin to defaults
 	digitalWrite(wpi, LOW);
 	pinMode(wpi, INPUT);
 	pullUpDnControl(wpi, PUD_OFF);
 }
 
-void node::add_input (unsigned long wpi, int edge, int pUpDown, std::string name)
+void node::add_input(const int wpi, int edge, int pUpDown, std::string name)
 {
-	this->pins.at(wpi).e = edge;
-	this->pins.at(wpi).p = INPUT;
-	this->pins.at(wpi).ud = pUpDown;
-	this->pins.at(wpi).name = name;
+	npin tmp;
+	tmp.e = edge;
+	tmp.ud = pUpDown;
+	tmp.name = name;
+
+	this->pins.insert(std::pair<int, npin>(wpi, tmp));
 
 	pinMode (wpi, INPUT);
 	pullUpDnControl (wpi, pUpDown);
@@ -38,8 +39,12 @@ void node::add_input (unsigned long wpi, int edge, int pUpDown, std::string name
 
 void node::add_output (int wpi, int state, std::string name)
 {
-	this->pins.at(wpi).p = OUTPUT;
-	this->pins.at(wpi).name = name;
+	npin tmp;
+	tmp.p = OUTPUT;
+	tmp.name = name;
+	tmp.s = state;
+
+	this->pins.insert(std::pair<int, npin>(wpi, tmp));
 
 	pinMode (wpi, OUTPUT);
 	digitalWrite (wpi, state);
@@ -47,14 +52,16 @@ void node::add_output (int wpi, int state, std::string name)
 
 void node::add_pwm_output (int wpi, unsigned int pwmr, int pwmc, int pwmm, int pwm)
 {
-	this->pins.at(wpi).p = PWM_OUTPUT;
-	this->pins.at(wpi).pw = pwm;
+	npin tmp;
+
+	tmp.p = PWM_OUTPUT;
+	tmp.pw = pwm;
+
+	this->pins.insert(std::pair<int, npin>(wpi, tmp));
 
 	this->pc = pwmc;        // PWM clock
 	this->pr = pwmr;        // PWM range
 	this->pm = pwmm;        // PWM mode
-
-	this->pins.at(wpi) = {};
 
 	pwmSetMode (pwmm);
 	pwmSetClock (pwmc);
@@ -65,6 +72,7 @@ void node::add_pwm_output (int wpi, unsigned int pwmr, int pwmc, int pwmm, int p
 void node::set_output_state (int wpi, int state)
 {
 	digitalWrite (wpi, state);
+
 	this->pins.at(wpi).s = state;
 }
 

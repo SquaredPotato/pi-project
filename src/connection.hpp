@@ -25,23 +25,21 @@ public:
 	static pointer create(io_service& io_service);
 	ip::tcp::socket& socket();
 
-	void start(objectHandler &handler);
+	void start(objectHandler *handler);
 
 private:
 	explicit connection(io_service& io_service_) :
-			socket_(io_service_),
-			opcode_(3),
-			specifier_(3),
-			subspecifier_(3) {};
+			 socket_(io_service_) {};
 
-	objectHandler handler;
 	ip::tcp::socket socket_;
 
-	streambuf opcode_, specifier_, subspecifier_;
+	streambuf strbuf;
 
 	streambuf response_;
 
-	std::string make_string(boost::asio::streambuf& streambuf), response;
+	objectHandler *handler;
+
+	std::string make_string(streambuf *streambuf), response;
 
 	void write(std::string msg);
 

@@ -4,6 +4,7 @@
 #include <cstddef>
 #include <boost/serialization/access.hpp>
 #include <boost/serialization/serialization.hpp>
+#include <boost/serialization/nvp.hpp>
 
 class I2CDevice {
 public:
@@ -25,7 +26,8 @@ protected:
 	template<class Archive>
 	void serialize(Archive & ar, unsigned int version)
 	{
-		ar & this->id & this->handle;
+		ar  & boost::serialization::make_nvp("id", id)
+			& boost::serialization::make_nvp("handle", handle);
 	}
 };
 

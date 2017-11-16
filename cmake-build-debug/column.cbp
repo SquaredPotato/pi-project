@@ -131,6 +131,9 @@
 		<Unit filename="/Users/Stefan/Documents/PiProject/src/objectHandler.hpp">
 			<Option target="column"/>
 		</Unit>
+		<Unit filename="/Users/Stefan/Documents/PiProject/src/pin.hpp">
+			<Option target="column"/>
+		</Unit>
 		<Unit filename="/Users/Stefan/Documents/PiProject/src/server.cpp">
 			<Option target="column"/>
 		</Unit>
@@ -144,6 +147,12 @@
 			<Option target="column"/>
 		</Unit>
 		<Unit filename="/Users/Stefan/Documents/PiProject/src/strings.hpp">
+			<Option target="column"/>
+		</Unit>
+		<Unit filename="/Users/Stefan/Documents/PiProject/src/trigger.cpp">
+			<Option target="column"/>
+		</Unit>
+		<Unit filename="/Users/Stefan/Documents/PiProject/src/trigger.hpp">
 			<Option target="column"/>
 		</Unit>
 		<Unit filename="/Users/Stefan/Documents/PiProject/CMakeLists.txt">

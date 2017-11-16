@@ -18,7 +18,7 @@ void server::handle_accept(connection::pointer new_connection, const boost::syst
 	std::cout << "handle_accept\n" << std::endl;
 	if (!error)
 	{
-		new_connection->start(*this->handler_);
+		new_connection->start(this->handler_);
 	}
 	this->start_accept();
 }

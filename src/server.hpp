@@ -10,10 +10,10 @@ using namespace boost::asio;
 class server
 {
 public:
-	explicit server(io_service& io, unsigned short port, objectHandler &handler) :
+	explicit server(io_service& io, unsigned short port, objectHandler *handler) :
 		acceptor_(io, ip::tcp::endpoint(ip::tcp::v4(), port))
 	{
-		handler_ = &handler;
+		handler_ = handler;
 		start_accept();
 	};
 

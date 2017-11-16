@@ -10,27 +10,24 @@ int main(int argc, char* argv[])
 		wiringPiSetup ();
 		std::cout << "wiringPiSetup();\n" << std::endl;
 
-		objectHandler handler = objectHandler();
+		objectHandler handler = objectHandler(&stop);
 		std::cout << "objectHandler\n" << std::endl;
 
-		settings settings("/home/pi/projects/pi-project/config/groups.cfg", "/home/pi/projects/pi-project/config/nodes.cfg");
-		std::cout << "settings\n" << std::endl;
-		if (handler.load_settings(&settings) == 0)
-		{
-			std::cout << "strings\n" << std::endl;
-			std::string ans, ip;
-			std::cout << "Loading settings failed, do you want to start the program anyway? [y/n]" << std::endl;
-			std::cin >> ans;
-			if (ans == "n") return 0;
-		}
+		settings settings("config/nodes.xml");
+//		std::cout << "settings\n" << std::endl;
+//		if (handler.load_settings(&settings) == 0)
+//		{
+//			std::cout << "strings\n" << std::endl;
+//			std::string ans, ip;
+//			std::cout << "Loading settings failed, do you want to start the program anyway? [y/n]" << std::endl;
+//			std::cin >> ans;
+//			if (ans == "n") return 0;
+//		}
 
-		boost::thread t(run_test);
+		run_test(&handler, &settings);
 
-		std::cout << "test" << std::endl;
-
-		sleep(300);
-		t.join();
-//		poll_loop(handler);
+		boost::thread poll(boost::bind(poll_loop, &handler));
+		poll.join();
 	}
 	catch (std::exception &e)
 	{
@@ -40,20 +37,55 @@ int main(int argc, char* argv[])
 	return 0;
 }
 
-void run_test(/*const std::string &host*/)
+void run_test(objectHandler* handler, settings* setting)
 {
-	std::string host = "192.168.2.2";
-	std::cout << "running test\n" << std::endl;
+//	std::string host = "192.168.2.2";
+//	std::cout << "running test\n" << std::endl;
+//
+//	boost::asio::io_service io;
+//	boost::asio::io_service::work work(io);
+//
+//	server server(io, TCP_PORT, handler);
+//	client client(io, host, TCP_PORT);
+//
+//	boost::thread th(boost::bind(&boost::asio::io_service::run, &io));
 
-	boost::asio::io_service io;
-	boost::asio::io_service::work work(io);
+	unsigned int nID = (unsigned int) handler->createNode("test", "localhost");
 
-	server server(io, 13370, );
-//	client client(io, host, 13370);
-	io.run();
+	handler->getNode(nID)->add_input(1, INT_EDGE_BOTH, PUD_OFF, "dist");
+	handler->getNode(nID)->add_input(0, INT_EDGE_BOTH, PUD_DOWN, "DIP");
+	handler->getNode(nID)->add_output(7, 0, "LED");
+
+	unsigned int gID = (unsigned int) handler->createGroup("testgroup", INPUT);
+	unsigned int sgID = (unsigned int) handler->createGroup("testgroup2", INPUT);
+	handler->getGroup(sgID)->addPin(0, nID);
+	handler->getGroup(gID)->addPin(1, nID);
+
+	unsigned int tID = (unsigned int) handler->createTrigger("testtrigger");
+	handler->getTrigger(tID)->addPin(7, nID);
+	handler->getTrigger(tID)->addGroup(gID);
+	handler->getTrigger(tID)->addGroup(sgID);
+
+	handler->getTrigger(tID)->setGCond(1, AND);
+
+	handler->save_settings(setting);
+	handler->delTrigger(tID);
+	handler->delNode(nID);
+	handler->delGroup(gID);
+	handler->delGroup(sgID);
+
+	std::cout << handler->getGroups().size() << std::endl;
+
+	if (handler->load_settings(setting) == 0)
+	{
+		std::cerr << "loading settings failed" << std::endl;
+	}
+
+	std::cout << handler->getGroups().size() << std::endl;
 }
 
-void poll_loop(objectHandler &handler)
+// User interaction lol
+void poll_loop(objectHandler *handler)
 {
 	std::cout << "Poll loop was activated!" << std::endl;
 	while (stop == 0)
@@ -66,6 +98,7 @@ void poll_loop(objectHandler &handler)
 			case 0:
 			{
 				stop = 1;
+				sleep(1);
 				break;
 			}
 			case 1:
@@ -75,11 +108,12 @@ void poll_loop(objectHandler &handler)
 				std::cin >> name;
 				std::cout << "Enter IP address: " << std::endl;
 				std::cin >> address;
-				handler.createNode(name, address);
+				handler->createNode(name, address);
 			}
 			case 2:
 			{
-				int wpi, pud, edge, node;
+				int wpi, pud, edge;
+				unsigned int node;
 				std::string name;
 				std::cout << nID;
 				std::cin >> node;
@@ -92,11 +126,12 @@ void poll_loop(objectHandler &handler)
 				std::cout << eNam;
 				std::cin >> name;
 
-				handler.getNode(node)->add_input((unsigned long) wpi, edge, pud, name);
+				handler->getNode(node)->add_input(wpi, edge, pud, name);
 			}
 			case 3:
 			{
-				int wpi, state, node;
+				int wpi, state;
+				unsigned int node;
 				std::string name;
 				std::cout << nID;
 				std::cin >> node;
@@ -107,10 +142,11 @@ void poll_loop(objectHandler &handler)
 				std::cout << eNam;
 				std::cin >> name;
 
-				handler.getNode(node)->add_output(wpi, state, name);
+				handler->getNode(node)->add_output(wpi, state, name);
 			}
 			case 4:
 			{
+
 			}
 			default:
 			{

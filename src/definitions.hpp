@@ -12,12 +12,15 @@
 #include <memory>
 #include <boost/thread.hpp>
 
-#include "globalObjects.hpp"
+#include "objectHandler.hpp"
+#include "settings.hpp"
 #include "strings.hpp"
+#include "server.hpp"
+#include "client.hpp"
 
 // Function declarations
-void poll_loop(objectHandler &handler);
-void run_test();
+void poll_loop(objectHandler *handler);
+void run_test(objectHandler *handler, settings *setting);
 
 // Global variables
 volatile int stop = 0;
