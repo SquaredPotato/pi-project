@@ -7,7 +7,6 @@
 #include "node.hpp"
 #include "group.hpp"
 #include "trigger.hpp"
-#include "settings.hpp"
 
 /*!
  * \brief Class that stores the nodes, groups and triggers
@@ -16,7 +15,8 @@
 class objectHandler
 {
 public:
-	objectHandler(volatile int *stop);
+	objectHandler();
+	void init(volatile int* stop);
 
 	/*!
 	 * \brief Creates and initialises a node
@@ -71,20 +71,6 @@ public:
 	 */
 	unsigned long numberOfTriggers();
 
-	/*!
-	 * \brief Saves all settings
-	 * \param settings object
-	 * \return status int, currently unused
-	 */
-	int save_settings(settings *settings);
-
-	/*!
-	 * \brief Loads all settings from file
-	 * \param settings object
-	 * \return status int, currently unused
-	 */
-	int load_settings(settings *settings);
-
 	/*! Returns map with all nodes */
 	std::map<int, node> getNodes();
 	/*! Returns map with all groups */
@@ -94,6 +80,7 @@ public:
 
 	/*! Returns pointer to node by id */
 	node* getNode(unsigned int id);
+	node* getNode(std::string name);
 	/*! Returns pointer to group by id */
 	group* getGroup(unsigned int id);
 	/*! Returns pointer to trigger by id */
@@ -113,6 +100,7 @@ public:
 	bool getMaster();
 private:
 	friend class boost::serialization::access;
+	friend class settings;
 
 	volatile int *stop;
 
@@ -125,14 +113,17 @@ private:
 	std::map<int, trigger>  tMap;
 
 	// is this the master bool, and local nodeID
-	bool master;
-	unsigned int lID;
+	bool master = true;
+	int lID;
 
 	template<class Archive>
 	void serialize(Archive & ar, unsigned int version)
 	{
-		ar  & boost::serialization::make_nvp("master", master)
-			& boost::serialization::make_nvp("lID", lID);
+		ar & boost::serialization::make_nvp("master", master)
+		   & boost::serialization::make_nvp("lID", lID)
+		   & boost::serialization::make_nvp("nMap", nMap)
+		   & boost::serialization::make_nvp("gMap", gMap)
+		   & boost::serialization::make_nvp("tMap", tMap);
 	}
 };
 

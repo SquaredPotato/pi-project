@@ -10,23 +10,13 @@ int main(int argc, char* argv[])
 		wiringPiSetup ();
 		std::cout << "wiringPiSetup();\n" << std::endl;
 
-		objectHandler handler = objectHandler(&stop);
+		objectHandler handler = objectHandler();
+		handler.init(&stop);
 		std::cout << "objectHandler\n" << std::endl;
 
-		settings settings("config/nodes.xml");
-//		std::cout << "settings\n" << std::endl;
-//		if (handler.load_settings(&settings) == 0)
-//		{
-//			std::cout << "strings\n" << std::endl;
-//			std::string ans, ip;
-//			std::cout << "Loading settings failed, do you want to start the program anyway? [y/n]" << std::endl;
-//			std::cin >> ans;
-//			if (ans == "n") return 0;
-//		}
+		settings settings("config/config.xml");
 
-		run_test(&handler, &settings);
-
-		boost::thread poll(boost::bind(poll_loop, &handler));
+		boost::thread poll(boost::bind(poll_loop, &handler, &settings));
 		poll.join();
 	}
 	catch (std::exception &e)
@@ -37,7 +27,7 @@ int main(int argc, char* argv[])
 	return 0;
 }
 
-void run_test(objectHandler* handler, settings* setting)
+int run_test(objectHandler* handler, settings* setting)
 {
 //	std::string host = "192.168.2.2";
 //	std::cout << "running test\n" << std::endl;
@@ -68,30 +58,24 @@ void run_test(objectHandler* handler, settings* setting)
 
 	handler->getTrigger(tID)->setGCond(1, AND);
 
-	handler->save_settings(setting);
-	handler->delTrigger(tID);
-	handler->delNode(nID);
-	handler->delGroup(gID);
-	handler->delGroup(sgID);
+	if (!setting->save(*handler))
+		std::cerr << "saving settings failed" << std::endl;
 
-	std::cout << handler->getGroups().size() << std::endl;
-
-	if (handler->load_settings(setting) == 0)
-	{
+	if (!setting->load(handler))
 		std::cerr << "loading settings failed" << std::endl;
-	}
 
-	std::cout << handler->getGroups().size() << std::endl;
+	std::cout << "test completed" << std::endl;
+	return 1;
 }
 
 // User interaction lol
-void poll_loop(objectHandler *handler)
+void poll_loop(objectHandler *handler, settings* setting)
 {
 	std::cout << "Poll loop was activated!" << std::endl;
 	while (stop == 0)
 	{
 		int ans;
-		std::cout << strt;
+		std::cout << strt << std::endl;
 		std::cin >> ans;
 		switch (ans)
 		{
@@ -109,6 +93,7 @@ void poll_loop(objectHandler *handler)
 				std::cout << "Enter IP address: " << std::endl;
 				std::cin >> address;
 				handler->createNode(name, address);
+				break;
 			}
 			case 2:
 			{
@@ -127,6 +112,7 @@ void poll_loop(objectHandler *handler)
 				std::cin >> name;
 
 				handler->getNode(node)->add_input(wpi, edge, pud, name);
+				break;
 			}
 			case 3:
 			{
@@ -143,10 +129,19 @@ void poll_loop(objectHandler *handler)
 				std::cin >> name;
 
 				handler->getNode(node)->add_output(wpi, state, name);
+				break;
 			}
 			case 4:
 			{
-
+				if (!setting->save(*handler))
+					std::cerr << "saving settings failed" << std::endl;
+				break;
+			}
+			case 5:
+			{
+				if (!setting->load(handler))
+					std::cerr << "loading settings failed" << std::endl;
+				break;
 			}
 			default:
 			{
@@ -155,3 +150,4 @@ void poll_loop(objectHandler *handler)
 		}
 	}
 }
+

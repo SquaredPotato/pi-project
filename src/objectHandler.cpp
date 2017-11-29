@@ -2,9 +2,15 @@
 
 #include <utility>
 
-objectHandler::objectHandler (volatile int *stop)
+objectHandler::objectHandler()
+{
+	;
+}
+
+void objectHandler::init(volatile int *stop)
 {
 	this->stop = stop;
+	this->lID = this->getFreeNID();
 }
 
 int objectHandler::createNode (std::string name, std::string address)
@@ -65,6 +71,15 @@ node* objectHandler::getNode(unsigned int id)
 	return &this->nMap[id];
 }
 
+node* objectHandler::getNode(std::string name)
+{
+	for (unsigned long i = 0; i < this->nMap.size(); i ++)
+		if (this->nMap[i].name == name)
+			return &this->nMap.at(i);
+
+	return 0;
+}
+
 group* objectHandler::getGroup(unsigned int id)
 {
 	return &this->gMap[id];
@@ -88,16 +103,6 @@ unsigned long objectHandler::numberOfGroups()
 unsigned long objectHandler::numberOfTriggers()
 {
 	return this->tMap.size();
-}
-
-int objectHandler::save_settings(settings *set)
-{
-	return set->save(this->nMap, this->gMap, this->tMap, *this);
-}
-
-int objectHandler::load_settings(settings *set)
-{
-	return set->load(&this->nMap, &this->gMap, &this->tMap, this);
 }
 
 std::map<int, node> objectHandler::getNodes()

@@ -13,21 +13,22 @@
 #include <boost/serialization/vector.hpp>
 #include <boost/serialization/array.hpp>
 #include <boost/serialization/string.hpp>
+#include <boost/serialization/binary_object.hpp>
 
-#include "node.hpp"
-#include "trigger.hpp"
+#include "objectHandler.hpp"
 
 class group;
 class objectHandler;
 
-class settings {
+class settings
+{
 public:
 	settings(std::string nodePath);
 
 	/*! Loads setting into given objects */
-	int load(std::map<int, node> *nMap, std::map<int, group> *gMap, std::map<int, trigger> *tMap, objectHandler *handler);
+	int load(objectHandler *handler);
 	/*! Saves settings from given objects */
-	int save(std::map<int, node> nMap, std::map<int, group> gMap, std::map<int, trigger> tMap, objectHandler handler);
+	int save(objectHandler handler);
 
 private:
 	std::string nPath, onPath = "config/old_nodes.xml";

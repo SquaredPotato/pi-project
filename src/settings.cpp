@@ -1,15 +1,14 @@
 #include "settings.hpp"
 
 #include <utility>
-#include "group.hpp"
-#include "objectHandler.hpp"
+
 
 settings::settings(std::string nodePath)
 {
 	this->nPath = std::move(nodePath);
 }
 
-int settings::load(std::map<int, node> *nMap, std::map<int, group> *gMap, std::map<int, trigger> *tMap, objectHandler *handler)
+int settings::load(objectHandler *handler)
 {
 	namespace fs = boost::filesystem;
 
@@ -22,25 +21,24 @@ int settings::load(std::map<int, node> *nMap, std::map<int, group> *gMap, std::m
 
 			std::cout << "loading settings..." << std::endl;
 
-			niarch >> boost::serialization::make_nvp("nodeMap", *nMap)
-			       >> boost::serialization::make_nvp("groupMap", *gMap)
-			       >> boost::serialization::make_nvp("triggerMap", *tMap)
-			       >> boost::serialization::make_nvp("handler", *handler);
+			niarch >> boost::serialization::make_nvp("handler", *handler);
 
 			std::cout << "loaded settings" << std::endl;
-
-			nodes.close();
+		}
+		else
+		{
+			std::cout << "Error: File does not exist" << std::endl;
 		}
 	} catch (boost::archive::archive_exception &e)
 	{
-		std::cerr << "An error occurred while trying to load settings: " << e.what() << std::endl;
+		std::cerr << "Error: loading settings failed: " << e.what() << std::endl;
 		return 0;
 	}
 
 	return 1;
 }
 
-int settings::save(std::map<int, node> nMap, std::map<int, group> gMap, std::map<int, trigger> tMap, objectHandler handler)
+int settings::save(objectHandler handler)
 {
 	namespace fs = boost::filesystem;
 
@@ -75,14 +73,12 @@ int settings::save(std::map<int, node> nMap, std::map<int, group> gMap, std::map
 
 		std::cout << "writing to files..." << std::endl;
 
-		noarch << boost::serialization::make_nvp("nodeMap", nMap)
-		       << boost::serialization::make_nvp("groupMap", gMap)
-		       << boost::serialization::make_nvp("triggerMap", tMap)
-		       << boost::serialization::make_nvp("handler", handler);
+		noarch << boost::serialization::make_nvp("handler", handler);
+
+		// This is apparently necessary because boost doesn't correctly close itself
+		nodes << "</boost_serialization>\n";
 
 		std::cout << "closing files, saving successful" << std::endl;
-		nodes.close();
-
 	} catch (boost::archive::archive_exception &e)
 	{
 		std::cerr << "An error occurred while trying to save settings: " << e.what() << std::endl;

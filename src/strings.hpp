@@ -4,7 +4,13 @@
 #include <string>
 
 // Strings for console 'menu'
-std::string strt = "Main Menu:\n0: stop\n1: Add node\n2: Add input\n3: Add output\n4: Run test\n",
+std::string strt = "Main Menu:\n"
+				   "0: stop\n"
+				   "1: Add node\n"
+				   "2: Add input\n"
+				   "3: Add output\n"
+				   "4: Save settings\n"
+				   "5: Load settings\n",
 			nID  = "Enter nodeID: \n",
 			wiPi = "Enter wiringPi number: \n",
 			eNam = "Enter name: \n",

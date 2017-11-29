@@ -58,11 +58,15 @@ public:
 
 	/*! Returns HIGH or LOW depending saved state */
 	int get_output_state(int wpi);
-	/*! Reads input
+	/*! Returns HIGH or LOW depending on input state */
 	int get_digital_input_state(int wpi);
+	/*! Returns whether the pin is in INPUT, OUTPUT or PWM_OUTPUT mode */
 	int get_mode(int wpi);
+	/*! Returns the edge on which the pin event should trigger */
 	int get_edge(int wpi);
+	/*! Returns node ID of this node */
 	int get_node_id();
+	/*! Returns ip address of this node */
 	std::string get_address();
 
 	std::string name;
@@ -87,7 +91,7 @@ private:
 
 	int pm, pc;
 	std::map<int, npin> pins;
-	unsigned int pr;
+	unsigned int pr = 0;
 
 	// Setting archive
 	template<class Archive>
