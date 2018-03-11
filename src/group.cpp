@@ -1,17 +1,22 @@
 #include "group.hpp"
+
+#include <utility>
 #include "objectHandler.hpp"
 
 group::group ()
-{ }
+=default;
 
 void group::init(int id, std::string name, int mode, objectHandler *handler)
 {
 	this->id = id;
 	this->mode = mode;
-	this->name = name;
+	this->name = std::move(name);
 	this->state = 0;
 	this->handler = handler;
 }
+
+void group::setHandler(objectHandler *handler)
+{   this->handler = handler;    }
 
 int group::addPin(int wpi, unsigned int pnodeID)
 {
@@ -20,11 +25,14 @@ int group::addPin(int wpi, unsigned int pnodeID)
 		this->pins.emplace_back(pin());
 		this->pins.back().nodeID = pnodeID;
 		this->pins.back().wpi = wpi;
+
 		return 1;
 	}
 
 	// If adding gpin was unsuccessful
-	std::cerr << "Tried to add gpin " << wpi << " from node " << pnodeID << " with the wrong mode (" << this->handler->getNode (pnodeID)->get_mode (wpi) << " instead of " << this->mode << ")" << std::endl;
+	std::cerr << "Tried to add gpin " << wpi << " from node " << pnodeID << " with the wrong mode ("
+	          << this->handler->getNode (pnodeID)->get_mode (wpi) << " instead of " << this->mode << ")" << std::endl;
+
 	return 0;
 }
 
@@ -58,19 +66,22 @@ int group::removePin(int wpi, int nodeID, unsigned int pos)
 
 int group::toggle()
 {
-	if (this->state == 1)
+	if (this->mode == OUTPUT)
 	{
-		this->state = 0;
+		if (this->state == 1)
+		{   this->state = 0;    }
+		else
+		{   this->state = 1;    }
+
+		for (auto &pin : this->pins)
+		{   this->handler->getNode(pin.nodeID)->set_output_state(pin.wpi, this->state); }
+
+		return this->state;
 	}
 	else
-	{
-		this->state = 1;
-	}
+	{   std::cout << "Tried to toggle group which is in INPUT mode" << std::endl;   }
 
-	for (auto &pin : this->pins)
-		this->handler->getNode(pin.nodeID)->set_output_state(pin.wpi, this->state);
-
-	return this->state;
+	return -1;
 }
 
 void group::newState(int newState)
@@ -78,15 +89,11 @@ void group::newState(int newState)
 	this->state = newState;
 
 	for (unsigned int i = 0; i < this->pins.size(); i ++)
-		this->handler->getNode(pins.at(i).nodeID)->set_output_state(this->pins.at(i).wpi, newState);
+	{   this->handler->getNode(pins.at(i).nodeID)->set_output_state(this->pins.at(i).wpi, newState);    }
 }
 
 std::vector<pin> group::getPins()
-{
-	return this->pins;
-}
+{   return this->pins;  }
 
 int group::getMode()
-{
-	return this->mode;
-}
+{   return this->mode;  }

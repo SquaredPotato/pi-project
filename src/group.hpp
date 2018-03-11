@@ -19,13 +19,18 @@ public:
 	group();
 
 	/*!
-	 * \brief Initalizes the group, only to be called by the objectHandler unless you know what you are doing
+	 * \brief Initalizes the group
 	 * \param id The id to be assinged to this group
 	 * \param name The name to be assinged to this group
 	 * \param mode This groups mode, can be either INPUT or OUTPUT
 	 * \param handler Pointer to object handler in which the group is saved
 	 */
 	void init(int id, std::string name, int mode, objectHandler *handler);
+	/*!
+	 * \brief Sets pointer to new objectHandler
+	 * @param handler pointer to new objectHandler
+	 */
+	void setHandler(objectHandler *handler);
 
 	/*!
 	 * \brief Adds a pin to the group
