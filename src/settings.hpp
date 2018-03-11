@@ -26,12 +26,12 @@ public:
 	settings(std::string nodePath);
 
 	/*! Loads setting into given objects */
-	int load(objectHandler *handler);
+	int load(objectHandler *handler, volatile int* stop);
 	/*! Saves settings from given objects */
 	int save(objectHandler handler);
 
 private:
-	std::string nPath, onPath = "config/old_nodes.xml";
+	std::string nPath, onPath = "config/old_config.xml";
 };
 
 #endif //COLUMN_SETTINGS_HPP
