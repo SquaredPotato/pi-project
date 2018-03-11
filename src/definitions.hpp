@@ -19,8 +19,8 @@
 #include "client.hpp"
 
 // Function declarations
-void poll_loop(objectHandler *handler);
-void run_test(objectHandler *handler, settings *setting);
+void poll_loop(objectHandler *handler, settings* setting);
+int run_test(objectHandler *handler, settings *setting);
 
 // Global variables
 volatile int stop = 0;

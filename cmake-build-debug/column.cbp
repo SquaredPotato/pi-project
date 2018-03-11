@@ -8,154 +8,153 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/Stefan/Documents/PiProject/cmake-build-debug"/>
+				<Option working_dir="/Users/stefanschokker/Documents/projects/pi-project/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/opt/local/bin/gmake -j8 -f &quot;/Users/Stefan/Documents/PiProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/opt/local/bin/gmake -j8 -f &quot;/Users/Stefan/Documents/PiProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/opt/local/bin/gmake -j8 -f &quot;/Users/Stefan/Documents/PiProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/opt/local/bin/gmake -j8 -f &quot;/Users/Stefan/Documents/PiProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/stefanschokker/Documents/projects/pi-project/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/stefanschokker/Documents/projects/pi-project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/stefanschokker/Documents/projects/pi-project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/stefanschokker/Documents/projects/pi-project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/Stefan/Documents/PiProject/cmake-build-debug"/>
+				<Option working_dir="/Users/stefanschokker/Documents/projects/pi-project/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/opt/local/bin/gmake -j8 -f &quot;/Users/Stefan/Documents/PiProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/opt/local/bin/gmake -j8 -f &quot;/Users/Stefan/Documents/PiProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/opt/local/bin/gmake -j8 -f &quot;/Users/Stefan/Documents/PiProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/opt/local/bin/gmake -j8 -f &quot;/Users/Stefan/Documents/PiProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/stefanschokker/Documents/projects/pi-project/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/stefanschokker/Documents/projects/pi-project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/stefanschokker/Documents/projects/pi-project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/stefanschokker/Documents/projects/pi-project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/Stefan/Documents/PiProject/cmake-build-debug"/>
+				<Option working_dir="/Users/stefanschokker/Documents/projects/pi-project/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/opt/local/bin/gmake -j8 -f &quot;/Users/Stefan/Documents/PiProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/opt/local/bin/gmake -j8 -f &quot;/Users/Stefan/Documents/PiProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/opt/local/bin/gmake -j8 -f &quot;/Users/Stefan/Documents/PiProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/opt/local/bin/gmake -j8 -f &quot;/Users/Stefan/Documents/PiProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/stefanschokker/Documents/projects/pi-project/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/stefanschokker/Documents/projects/pi-project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/stefanschokker/Documents/projects/pi-project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/stefanschokker/Documents/projects/pi-project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="column">
-				<Option output="/Users/Stefan/Documents/PiProject/cmake-build-debug/column" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/Stefan/Documents/PiProject/cmake-build-debug"/>
+				<Option output="/Users/stefanschokker/Documents/projects/pi-project/cmake-build-debug/column" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/stefanschokker/Documents/projects/pi-project/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/usr/local/boost/include"/>
+					<Add directory="/Users/stefanschokker/include"/>
+					<Add directory="/Users/stefanschokker/Documents/projects/pi-project/./include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/Users/Stefan/include"/>
-					<Add directory="/Users/Stefan/Documents/PiProject/./include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.1.0/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
 					<Add directory="/usr/include"/>
 					<Add directory="/System/Library/Frameworks"/>
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/opt/local/bin/gmake -j8 -f &quot;/Users/Stefan/Documents/PiProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 column"/>
-					<CompileFile command="/opt/local/bin/gmake -j8 -f &quot;/Users/Stefan/Documents/PiProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/opt/local/bin/gmake -j8 -f &quot;/Users/Stefan/Documents/PiProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/opt/local/bin/gmake -j8 -f &quot;/Users/Stefan/Documents/PiProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/stefanschokker/Documents/projects/pi-project/cmake-build-debug/Makefile&quot;  VERBOSE=1 column"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/stefanschokker/Documents/projects/pi-project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/stefanschokker/Documents/projects/pi-project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/stefanschokker/Documents/projects/pi-project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="column/fast">
-				<Option output="/Users/Stefan/Documents/PiProject/cmake-build-debug/column" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/Stefan/Documents/PiProject/cmake-build-debug"/>
+				<Option output="/Users/stefanschokker/Documents/projects/pi-project/cmake-build-debug/column" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/stefanschokker/Documents/projects/pi-project/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/usr/local/boost/include"/>
+					<Add directory="/Users/stefanschokker/include"/>
+					<Add directory="/Users/stefanschokker/Documents/projects/pi-project/./include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include/c++/v1"/>
 					<Add directory="/usr/local/include"/>
-					<Add directory="/Users/Stefan/include"/>
-					<Add directory="/Users/Stefan/Documents/PiProject/./include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../include/c++/v1"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/8.1.0/include"/>
-					<Add directory="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/9.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
 					<Add directory="/usr/include"/>
 					<Add directory="/System/Library/Frameworks"/>
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/opt/local/bin/gmake -j8 -f &quot;/Users/Stefan/Documents/PiProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 column/fast"/>
-					<CompileFile command="/opt/local/bin/gmake -j8 -f &quot;/Users/Stefan/Documents/PiProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/opt/local/bin/gmake -j8 -f &quot;/Users/Stefan/Documents/PiProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/opt/local/bin/gmake -j8 -f &quot;/Users/Stefan/Documents/PiProject/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/stefanschokker/Documents/projects/pi-project/cmake-build-debug/Makefile&quot;  VERBOSE=1 column/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/stefanschokker/Documents/projects/pi-project/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/stefanschokker/Documents/projects/pi-project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/stefanschokker/Documents/projects/pi-project/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/Stefan/Documents/PiProject/src/I2CDevice.cpp">
+		<Unit filename="/Users/stefanschokker/Documents/projects/pi-project/src/I2CDevice.cpp">
 			<Option target="column"/>
 		</Unit>
-		<Unit filename="/Users/Stefan/Documents/PiProject/src/I2CDevice.hpp">
+		<Unit filename="/Users/stefanschokker/Documents/projects/pi-project/src/I2CDevice.hpp">
 			<Option target="column"/>
 		</Unit>
-		<Unit filename="/Users/Stefan/Documents/PiProject/src/client.cpp">
+		<Unit filename="/Users/stefanschokker/Documents/projects/pi-project/src/client.cpp">
 			<Option target="column"/>
 		</Unit>
-		<Unit filename="/Users/Stefan/Documents/PiProject/src/client.hpp">
+		<Unit filename="/Users/stefanschokker/Documents/projects/pi-project/src/client.hpp">
 			<Option target="column"/>
 		</Unit>
-		<Unit filename="/Users/Stefan/Documents/PiProject/src/connection.cpp">
+		<Unit filename="/Users/stefanschokker/Documents/projects/pi-project/src/connection.cpp">
 			<Option target="column"/>
 		</Unit>
-		<Unit filename="/Users/Stefan/Documents/PiProject/src/connection.hpp">
+		<Unit filename="/Users/stefanschokker/Documents/projects/pi-project/src/connection.hpp">
 			<Option target="column"/>
 		</Unit>
-		<Unit filename="/Users/Stefan/Documents/PiProject/src/definitions.hpp">
+		<Unit filename="/Users/stefanschokker/Documents/projects/pi-project/src/definitions.hpp">
 			<Option target="column"/>
 		</Unit>
-		<Unit filename="/Users/Stefan/Documents/PiProject/src/globalObjects.hpp">
+		<Unit filename="/Users/stefanschokker/Documents/projects/pi-project/src/group.cpp">
 			<Option target="column"/>
 		</Unit>
-		<Unit filename="/Users/Stefan/Documents/PiProject/src/group.cpp">
+		<Unit filename="/Users/stefanschokker/Documents/projects/pi-project/src/group.hpp">
 			<Option target="column"/>
 		</Unit>
-		<Unit filename="/Users/Stefan/Documents/PiProject/src/group.hpp">
+		<Unit filename="/Users/stefanschokker/Documents/projects/pi-project/src/main.cpp">
 			<Option target="column"/>
 		</Unit>
-		<Unit filename="/Users/Stefan/Documents/PiProject/src/main.cpp">
+		<Unit filename="/Users/stefanschokker/Documents/projects/pi-project/src/node.cpp">
 			<Option target="column"/>
 		</Unit>
-		<Unit filename="/Users/Stefan/Documents/PiProject/src/node.cpp">
+		<Unit filename="/Users/stefanschokker/Documents/projects/pi-project/src/node.hpp">
 			<Option target="column"/>
 		</Unit>
-		<Unit filename="/Users/Stefan/Documents/PiProject/src/node.hpp">
+		<Unit filename="/Users/stefanschokker/Documents/projects/pi-project/src/objectHandler.cpp">
 			<Option target="column"/>
 		</Unit>
-		<Unit filename="/Users/Stefan/Documents/PiProject/src/objectHandler.cpp">
+		<Unit filename="/Users/stefanschokker/Documents/projects/pi-project/src/objectHandler.hpp">
 			<Option target="column"/>
 		</Unit>
-		<Unit filename="/Users/Stefan/Documents/PiProject/src/objectHandler.hpp">
+		<Unit filename="/Users/stefanschokker/Documents/projects/pi-project/src/pin.hpp">
 			<Option target="column"/>
 		</Unit>
-		<Unit filename="/Users/Stefan/Documents/PiProject/src/pin.hpp">
+		<Unit filename="/Users/stefanschokker/Documents/projects/pi-project/src/server.cpp">
 			<Option target="column"/>
 		</Unit>
-		<Unit filename="/Users/Stefan/Documents/PiProject/src/server.cpp">
+		<Unit filename="/Users/stefanschokker/Documents/projects/pi-project/src/server.hpp">
 			<Option target="column"/>
 		</Unit>
-		<Unit filename="/Users/Stefan/Documents/PiProject/src/server.hpp">
+		<Unit filename="/Users/stefanschokker/Documents/projects/pi-project/src/settings.cpp">
 			<Option target="column"/>
 		</Unit>
-		<Unit filename="/Users/Stefan/Documents/PiProject/src/settings.cpp">
+		<Unit filename="/Users/stefanschokker/Documents/projects/pi-project/src/settings.hpp">
 			<Option target="column"/>
 		</Unit>
-		<Unit filename="/Users/Stefan/Documents/PiProject/src/settings.hpp">
+		<Unit filename="/Users/stefanschokker/Documents/projects/pi-project/src/strings.hpp">
 			<Option target="column"/>
 		</Unit>
-		<Unit filename="/Users/Stefan/Documents/PiProject/src/strings.hpp">
+		<Unit filename="/Users/stefanschokker/Documents/projects/pi-project/src/trigger.cpp">
 			<Option target="column"/>
 		</Unit>
-		<Unit filename="/Users/Stefan/Documents/PiProject/src/trigger.cpp">
+		<Unit filename="/Users/stefanschokker/Documents/projects/pi-project/src/trigger.hpp">
 			<Option target="column"/>
 		</Unit>
-		<Unit filename="/Users/Stefan/Documents/PiProject/src/trigger.hpp">
-			<Option target="column"/>
-		</Unit>
-		<Unit filename="/Users/Stefan/Documents/PiProject/CMakeLists.txt">
+		<Unit filename="/Users/stefanschokker/Documents/projects/pi-project/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

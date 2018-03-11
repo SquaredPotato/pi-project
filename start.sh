@@ -7,7 +7,7 @@ rm column;
 cmake CMakeLists.txt;
 
 # Build the project
-make;
+make |& ./colorize.sh;
 
 # Run the project
-sudo ./column;
+./column |& ./colorize.sh;

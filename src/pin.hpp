@@ -5,7 +5,8 @@
 #include <wiringPi.h>
 
 /*! Conditions for groups and pins in \link #trigger \endlink */
-enum conds {
+enum conds
+{
 	AND,
 	NAND,
 	OR,
@@ -18,13 +19,15 @@ enum conds {
  * \brief pin for usage in \link trigger \endlink
  * \details stores critical info for each pin to determine the output of the trigger
  */
-struct pin {
+struct pin
+{
 	int wpi = -1;
 	short condition = OR;
 	unsigned int nodeID;
 public:
 	template<class Archive>
-	void serialize(Archive& ar, const unsigned int version) {
+	void serialize(Archive& ar, const unsigned int version)
+	{
 		ar  & boost::serialization::make_nvp("wpi", wpi)
 			& boost::serialization::make_nvp("condition", condition)
 			& boost::serialization::make_nvp("nodeID", nodeID);
@@ -35,7 +38,8 @@ public:
  * \brief pin for usage in \ink node \endlink
  * \details stores details such as edge, pull UP DOWN resistor
  */
-struct npin {
+struct npin
+{
 	int p = 0, s = 0, e = INT_EDGE_SETUP, ud = PUD_OFF, pw = 0;
 	std::string name = "";
 	template<class Archive>
@@ -54,13 +58,15 @@ struct npin {
  * \brief group for usage in \link trigger \endlink
  * \details stores critical info for each group to determine the output of the trigger
  */
-struct tgroup {
+struct tgroup
+{
 	unsigned int gID;
 	short condition = OR;
 	std::vector<pin> gpin = {};
 public:
 	template<class Archive>
-	void serialize(Archive& ar, const unsigned int version) {
+	void serialize(Archive& ar, const unsigned int version)
+	{
 		ar  & boost::serialization::make_nvp("gID", gID)
 			& boost::serialization::make_nvp("condition", condition);
 	}

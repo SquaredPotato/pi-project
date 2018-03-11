@@ -10,7 +10,8 @@
 #include "pin.hpp"
 //#include "I2CDevice.hpp
 
-class node {
+class node
+{
 public:
 	node();
 	friend class boost::serialization::access;
@@ -23,6 +24,8 @@ public:
 	 */
 	void init(std::string name, int id, std::string address);
 
+	/*! Re-initalizes node, needed if settings are loaded after a reboot */
+	void reInit ();
 	/*! Deletes a pin using the wiringPi scheme index */
 	void delPin(int wpi);
 
@@ -33,7 +36,7 @@ public:
 	 * \param pUpDown Whether the input should be connected to the pull UP, DOWN or no resistor at all
 	 * \param name Name of the pin
 	 */
-	void add_input(const int wpi, int edge, int pUpDown, std::string name);
+	void add_input(int wpi, int edge, int pUpDown, std::string name);
 	/*!
 	 * \brief Adds an output pin to this node
 	 * \param wpi wpi Pin index according to the wiringPi numbering scheme
@@ -79,14 +82,12 @@ private:
 	|*|  pm: pwm mode
 	|*|  pc: pwm clock
 	|*|  pr: pwm range
-	|*|  pw: pwm percentage, I think
+	|*|  pw: pwm percentage
 	|*|
-	|*|  p: gpin number according to pins scheme
+	|*|  p: pin mode
 	|*|  s: state of said gpin
 	|*|  e: edge (for setting up triggers, unimplemented as of now)
 	|*|  ud: upDown resistor
-	|*|
-	|*|  I2C devices left unimplemented for now
 	\*/
 
 	int pm, pc;

@@ -6,7 +6,8 @@
 #include <boost/serialization/serialization.hpp>
 #include <boost/serialization/nvp.hpp>
 
-class I2CDevice {
+class I2CDevice
+{
 public:
     I2CDevice();
 

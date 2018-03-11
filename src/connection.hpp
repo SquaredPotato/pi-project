@@ -33,9 +33,8 @@ private:
 
 	ip::tcp::socket socket_;
 
-	streambuf strbuf;
-
-	streambuf response_;
+	streambuf strbuf,
+			  response_;
 
 	objectHandler *handler;
 

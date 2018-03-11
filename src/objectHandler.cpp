@@ -1,11 +1,7 @@
 #include "objectHandler.hpp"
 
-#include <utility>
-
 objectHandler::objectHandler()
-{
-	;
-}
+=default;
 
 void objectHandler::init(volatile int *stop)
 {
@@ -15,7 +11,6 @@ void objectHandler::init(volatile int *stop)
 
 int objectHandler::createNode (std::string name, std::string address)
 {
-	// Find lowest available key
 	int i = this->getFreeID(&this->nMap);
 
 	this->nMap[i] = node();
@@ -26,7 +21,6 @@ int objectHandler::createNode (std::string name, std::string address)
 
 int objectHandler::createGroup (std::string name, int mode)
 {
-	// Find lowest available key
 	int i = this->getFreeID(&this->gMap);
 
 	this->gMap.insert(std::make_pair(i, group()));
@@ -46,84 +40,56 @@ int objectHandler::createTrigger(std::string name)
 }
 
 void objectHandler::delNode(int id)
-{
-//	if (auto it = this->nMap.find(id) != this->nMap.end())
-//		this->nMap.erase(it);
-	this->nMap.erase(id);
-}
+{   this->nMap.erase(id);   }
 
 void objectHandler::delGroup(int id)
-{
-//	if (auto it = this->gMap.find(id) != this->gMap.end())
-//		this->gMap.erase(it);
-	this->gMap.erase(id);
-}
+{   this->gMap.erase(id);   }
 
 void objectHandler::delTrigger(int id)
-{
-//	if (auto it = this->tMap.find(id) != this->tMap.end())
-//		this->tMap.erase(it);
-	this->tMap.erase(id);
-}
+{   this->tMap.erase(id);   }
 
 node* objectHandler::getNode(unsigned int id)
-{
-	return &this->nMap[id];
-}
+{   return &this->nMap[id]; }
 
 node* objectHandler::getNode(std::string name)
 {
 	for (unsigned long i = 0; i < this->nMap.size(); i ++)
+	{
 		if (this->nMap[i].name == name)
-			return &this->nMap.at(i);
+		{   return &this->nMap[i]; }
+	}
 
-	return 0;
+	return nullptr;
 }
 
 group* objectHandler::getGroup(unsigned int id)
-{
-	return &this->gMap[id];
-}
+{   return &this->gMap[id]; }
 
 trigger* objectHandler::getTrigger(unsigned int id)
-{
-	return &this->tMap[id];
-}
+{   return &this->tMap[id]; }
 
-unsigned long objectHandler::numberOfNodes()
-{
-	return this->nMap.size();
-}
+unsigned long objectHandler::numNodes()
+{   return this->nMap.size();   }
 
-unsigned long objectHandler::numberOfGroups()
-{
-	return this->gMap.size();
-}
+unsigned long objectHandler::numGroups()
+{   return this->gMap.size();   }
 
-unsigned long objectHandler::numberOfTriggers()
-{
-	return this->tMap.size();
-}
+unsigned long objectHandler::numTriggers()
+{   return this->tMap.size();   }
 
 std::map<int, node> objectHandler::getNodes()
-{
-	return this->nMap;
-}
+{   return this->nMap;  }
 
 std::map<int, group> objectHandler::getGroups()
-{
-	return this->gMap;
-}
+{   return this->gMap;  }
 
 std::map<int, trigger> objectHandler::getTriggers()
-{
-	return this->tMap;
-}
+{   return this->tMap;  }
 
 template <typename T>
-int objectHandler::getFreeID(std::map<int, T>* map)
+unsigned int objectHandler::getFreeID(std::map<int, T> *map)
 {
-	int i = 0;
+	unsigned int i = 0;
 
 	for (auto it = map->cbegin(), end = map->cend();
 			it != end && i == it->first; it ++, ++ i)
@@ -132,27 +98,17 @@ int objectHandler::getFreeID(std::map<int, T>* map)
 	return i;
 }
 
-int objectHandler::getFreeNID()
-{
-	return this->getFreeID(&this->nMap);
-}
+unsigned int objectHandler::getFreeNID()
+{   return this->getFreeID(&this->nMap);    }
 
-int objectHandler::getFreeGID()
-{
-	return this->getFreeID(&this->gMap);
-}
+unsigned int objectHandler::getFreeGID()
+{   return this->getFreeID(&this->gMap);    }
 
-int objectHandler::getFreeTID()
-{
-	return this->getFreeID(&this->tMap);
-}
+unsigned int objectHandler::getFreeTID()
+{   return this->getFreeID(&this->tMap);    }
 
 int objectHandler::getlId()
-{
-	return this->lID;
-}
+{   return this->lID;   }
 
 bool objectHandler::getMaster()
-{
-	return this->master;
-}
+{   return this->master;    }

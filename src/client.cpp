@@ -6,7 +6,8 @@ void client::start()
 {
 	std::cout << "Endpoint address: " << this->endpoint_.address() << "\n Enpoint port: " << this->endpoint_.port();
 
-	try {
+	try
+	{
 		this->socket_.connect(this->endpoint_);
 
 		std::string msg = "test";
@@ -26,9 +27,8 @@ void client::start()
 		this->socket_.write_some(boost::asio::buffer(msg, msg.size()));
 		this->socket_.close();
 		std::cout << "closed connection" << std::endl;
-	} catch (std::exception &ex)
-	{
-		std::cerr << "An error has occured: " << ex.what() << std::endl;
 	}
+	catch (std::exception &ex)
+	{   std::cerr << "An error has occured: " << ex.what() << std::endl;    }
 
 }

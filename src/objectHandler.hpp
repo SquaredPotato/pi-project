@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <utility>
 #include <boost/any.hpp>
 #include "node.hpp"
 #include "group.hpp"
@@ -16,6 +17,11 @@ class objectHandler
 {
 public:
 	objectHandler();
+
+	/*!
+	 * \brief Sets global stop variable
+	 * \param stop  Pointer to global stop variable
+	 */
 	void init(volatile int* stop);
 
 	/*!
@@ -55,21 +61,12 @@ public:
 	 */
 	void delTrigger(int id);
 
-	/*!
-	 * \brief Counts number of nodes in handler
-	 * \return unsigned long, the number of nodes
-	 */
-	unsigned long numberOfNodes();
-	/*!
-	 * \brief Counts number of groups in handler
-	 * \return unsigned long, the number of groups
-	 */
-	unsigned long numberOfGroups();
-	/*!
-	 * \brief Counts number of triggers in handler
-	 * \return unsigned long, number of triggers
-	 */
-	unsigned long numberOfTriggers();
+	/*! Returns amount of nodes in this handler */
+	unsigned long numNodes();
+	/*! Returns amount of groups in this handler */
+	unsigned long numGroups();
+	/*! Returns amount of triggers in this handler */
+	unsigned long numTriggers();
 
 	/*! Returns map with all nodes */
 	std::map<int, node> getNodes();
@@ -78,7 +75,7 @@ public:
 	/*! Returns map with all triggers */
 	std::map<int, trigger> getTriggers();
 
-	/*! Returns pointer to node by id */
+	/*! Returns pointer to node by id or name*/
 	node* getNode(unsigned int id);
 	node* getNode(std::string name);
 	/*! Returns pointer to group by id */
@@ -88,11 +85,11 @@ public:
 
 	// These are seperate because of usage in the connection class
 	/*! Returns first available group id */
-	int getFreeGID();
+	unsigned int getFreeGID();
 	/*! Returns first available node id */
-	int getFreeNID();
+	unsigned int getFreeNID();
 	/*! Returns first available trigger id */
-	int getFreeTID();
+	unsigned int getFreeTID();
 
 	/*! Returns local node id */
 	int getlId();
@@ -101,11 +98,12 @@ public:
 private:
 	friend class boost::serialization::access;
 	friend class settings;
+	friend class connection;
 
 	volatile int *stop;
 
 	template <typename T>
-	int getFreeID(std::map<int, T>* map);
+	unsigned int getFreeID(std::map<int, T> *map);
 
 	// maps of nodes and groups
 	std::map<int, node>  	nMap;

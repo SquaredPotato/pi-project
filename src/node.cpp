@@ -1,16 +1,47 @@
 #include "node.hpp"
-
 #include <utility>
+#include <iostream>
 
 node::node()
-{
-}
+=default;
 
 void node::init(std::string name, int id, std::string address)
 {
 	this->name = std::move(name);
 	this->id = id;
 	this ->location = std::move(address);
+}
+
+void node::reInit ()
+{
+	for (std::pair<int, npin> a : this->pins)
+	{
+		pinMode(a.first, a.second.p);
+
+		switch (a.second.p)
+		{
+			case INPUT:
+			{
+				pullUpDnControl(a.first, a.second.ud);
+				break;
+			}
+			case OUTPUT:
+			{
+				digitalWrite(a.first, a.second.s);
+				break;
+			}
+			case PWM_OUTPUT:
+			{
+				pwmSetClock(this->pc);
+				pwmSetMode(this->pm);
+				pwmSetRange(this->pr);
+				pwmWrite(a.first, a.second.pw);
+				break;
+			}
+			default:
+			{	break;  }
+		}
+	}
 }
 
 void node::delPin(int wpi)
@@ -23,7 +54,7 @@ void node::delPin(int wpi)
 	pullUpDnControl(wpi, PUD_OFF);
 }
 
-void node::add_input(const int wpi, int edge, int pUpDown, std::string name)
+void node::add_input(int wpi, int edge, int pUpDown, std::string name)
 {
 	npin tmp;
 	tmp.e = edge;
