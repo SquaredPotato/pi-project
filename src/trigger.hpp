@@ -5,6 +5,7 @@
 #include <boost/serialization/access.hpp>
 #include <boost/serialization/nvp.hpp>
 #include <map>
+#include <pthread.h>
 #include <vector>
 #include "node.hpp"
 #include "group.hpp"
@@ -50,11 +51,13 @@ public:
 	/*! Returns whether the trigger is currently running */
 	bool getDetectState();
 
+	boost::thread* getThread();
+
 	std::string name;
 private:
 	void detect();
 	volatile int *stop;
-	int timeout = 100;
+	int timeout = 50;
 	bool detection = true;
 	objectHandler *handler;
 	boost::thread *thread;
