@@ -7,7 +7,7 @@
 #include <map>
 #include <boost/serialization/access.hpp>
 #include <boost/serialization/nvp.hpp>
-#include "pin.hpp"
+#include "pin.cpp"
 //#include "I2CDevice.hpp
 
 class node

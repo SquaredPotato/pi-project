@@ -9,7 +9,7 @@
 #include <vector>
 #include "node.hpp"
 #include "group.hpp"
-#include "pin.hpp"
+#include "pin.cpp"
 
 class objectHandler;
 
