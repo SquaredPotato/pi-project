@@ -10,13 +10,12 @@
 #include <cstdio>
 #include <map>
 #include <memory>
+#include <thread>
 #include <boost/thread.hpp>
 
 #include "objectHandler.hpp"
 #include "settings.hpp"
 #include "strings.hpp"
-#include "server.hpp"
-#include "client.hpp"
 
 // Function declarations
 void poll_loop(objectHandler *handler, settings* setting);

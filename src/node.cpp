@@ -65,7 +65,6 @@ void node::add_input(int wpi, int edge, int pUpDown, std::string name)
 
 	pinMode (wpi, INPUT);
 	pullUpDnControl (wpi, pUpDown);
-
 }
 
 void node::add_output (int wpi, int state, std::string name)
@@ -126,15 +125,15 @@ void node::toggle_pwm (int wpi)
 
 void node::toggle_output_state (int wpi)
 {
-	if (this->pins.at(wpi).s == 1)
+	if (this->pins.at(wpi).s == HIGH)
 	{
-		this->pins.at(wpi).s = 0;
-		digitalWrite (wpi, 0);
+		this->pins.at(wpi).s = LOW;
+		digitalWrite (wpi, LOW);
 	}
 	else
 	{
-		this->pins.at(wpi).s = 1;
-		digitalWrite (wpi, 1);
+		this->pins.at(wpi).s = HIGH;
+		digitalWrite (wpi, HIGH);
 	}
 }
 

@@ -3,6 +3,8 @@
 
 #include <boost/serialization/nvp.hpp>
 #include <wiringPi.h>
+#include <string>
+#include <vector>
 
 /*! Conditions for groups and pins in \link #trigger \endlink */
 enum conds
@@ -23,14 +25,14 @@ struct pin
 {
 	int wpi = -1;
 	short condition = OR;
-	unsigned int nodeID;
+	unsigned int id;
 public:
 	template<class Archive>
 	void serialize(Archive& ar, const unsigned int version)
 	{
 		ar  & boost::serialization::make_nvp("wpi", wpi)
 			& boost::serialization::make_nvp("condition", condition)
-			& boost::serialization::make_nvp("nodeID", nodeID);
+			& boost::serialization::make_nvp("id", id);
 	}
 };
 
@@ -60,14 +62,14 @@ struct npin
  */
 struct tgroup
 {
-	unsigned int gID;
+	unsigned int id;
 	short condition = OR;
 	std::vector<pin> gpin = {};
 public:
 	template<class Archive>
 	void serialize(Archive& ar, const unsigned int version)
 	{
-		ar  & boost::serialization::make_nvp("gID", gID)
+		ar  & boost::serialization::make_nvp("id", id)
 			& boost::serialization::make_nvp("condition", condition);
 	}
 };

@@ -82,7 +82,7 @@ private:
 	|*|  pm: pwm mode
 	|*|  pc: pwm clock
 	|*|  pr: pwm range
-	|*|  pw: pwm percentage
+	|*|  pw: pwm percentage / stored in pin.cpp::npin
 	|*|
 	|*|  p: pin mode
 	|*|  s: state of said gpin
@@ -91,8 +91,8 @@ private:
 	\*/
 
 	int pm, pc;
-	std::map<int, npin> pins;
 	unsigned int pr = 0;
+	std::map<int, npin> pins;
 
 	// Setting archive
 	template<class Archive>

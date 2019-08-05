@@ -110,7 +110,7 @@ private:
 	std::map<int, group> 	gMap;
 	std::map<int, trigger>  tMap;
 
-	// is this the master bool, and local nodeID
+	// is this the master bool, and local id
 	bool master = true;
 	int lID;
 

@@ -1,4 +1,14 @@
+#include <boost/archive/xml_iarchive.hpp>
+#include <boost/archive/xml_oarchive.hpp>
+#include <boost/archive/archive_exception.hpp>
+#include <boost/serialization/map.hpp>
+#include <boost/serialization/vector.hpp>
+#include <boost/serialization/array.hpp>
+#include <boost/serialization/string.hpp>
+#include <boost/serialization/binary_object.hpp>
 #include "settings.hpp"
+#include <boost/filesystem.hpp>
+#include <boost/filesystem/exception.hpp>
 
 settings::settings(std::string nodePath)
 {   this->nPath = std::move(nodePath);  }
@@ -11,23 +21,30 @@ int settings::load(objectHandler *handler, volatile int* stop)
 	{
 		if (fs::exists(fs::path(this->nPath)))
 		{
-			std::ifstream nodes(this->nPath);
-			boost::archive::xml_iarchive niarch(nodes);
+			std::ifstream is(this->nPath.c_str());
 
-			// De-activate any active detect threads
-			for (std::pair<const int, trigger> &a : handler->tMap)
 			{
-				if (a.second.getDetectState())
-				{   a.second.toggleDetect();    }
+				boost::archive::xml_iarchive xiarch(is);
+
+				// De-activate any active detect threads
+				for (std::pair<const int, trigger> &a : handler->tMap)
+				{
+					if (a.second.getDetectState())
+					{
+						a.second.toggleDetect();
+					}
+				}
+
+				// Clear maps to prevent segfault
+				handler->tMap.clear();
+				handler->gMap.clear();
+				handler->nMap.clear();
+
+				// Load settings from file
+				xiarch >> boost::serialization::make_nvp("handler", handler);
 			}
 
-			// Clear maps to prevent segfault
-			handler->tMap.clear();
-			handler->gMap.clear();
-			handler->nMap.clear();
-
-			// Load settings from file
-			niarch >> boost::serialization::make_nvp("handler", handler);
+			handler->init(stop);
 
 			// Re-initialize nodes and corresponding pins
 			std::cout << "loading nodes" << std::endl;
@@ -45,8 +62,6 @@ int settings::load(objectHandler *handler, volatile int* stop)
 			{   handler->getTrigger(i)->init(handler, stop);    }
 
 			std::cout << "loaded settings" << std::endl;
-
-			nodes.close();
 		}
 		else
 		{   std::cout << "Error: File does not exist" << std::endl; }
@@ -86,14 +101,14 @@ int settings::save(objectHandler handler)
 		std::cout << "creating output filestreams..." << std::endl;
 		// write maps to fileds
 		std::ofstream nodes(this->nPath);
+//		fs::ofstream nodes(this->nPath);
 		boost::archive::xml_oarchive noarch(nodes);
 
 		noarch << boost::serialization::make_nvp("handler", handler);
-		// This is apparently necessary because boost doesn't correctly close itself
-//		nodes << "</boost_serialization>\n";
+		// This is apparently necessary because boost doesn't correctly close its xml
+		nodes << "</boost_serialization>\n";
 
 		nodes.close();
-
 	}
 	catch (boost::archive::archive_exception &e)
 	{

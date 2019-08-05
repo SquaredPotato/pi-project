@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 3.0)
 project(column)
 
-set (CMAKE_CXX_FLAGS    "${CMAKE_CXX_FLAGS} -std=c++14 -Wall -lpthread -lm -lwiringPi -lboost_system -lboost_thread -lboost_serialization -lboost_filesystem"   )
+set (CMAKE_CXX_FLAGS    "${CMAKE_CXX_FLAGS} -std=c++17 -Wall -lpthread -lm -lwiringPi -lboost_serialization -lboost_system -lboost_filesystem"   )
+set(CMAKE_REQUIRED_FLAGS -std=c++17)
+
 
 if (WIN32)
 
@@ -17,22 +19,22 @@ if (WIN32)
 else()
 
 	# boost librarys
-	set (BOOST_ROOT		    "/usr/local/boost/"		    )
-	set (BOOST_INCLUDEDIR	"/usr/local/boost/include"	)
-	set (BOOST_LIBRARYDIR	"/usr/local/boost/lib"		)
+	set (BOOST_ROOT		    "/usr/local/boost/1_70_0/"	    	)
+	set (BOOST_INCLUDEDIR	"/usr/local/boost/1_70_0/include"	)
+	set (BOOST_LIBRARYDIR	"/usr/local/boost/1_70_0/lib"		)
 
 endif ()
 
 
-find_package(Boost 1.63.0 COMPONENTS REQUIRED)
+find_package(Boost 1.70.0 COMPONENTS REQUIRED)
 
 link_directories(${LIBMYSQLCLIENT_LIBRARIES})
 
 if (NOT Boost_FOUND)
-    message (FATAL_ERROR "Fatal error: Boost (version >= 1.63.0) required."     )
+    message (FATAL_ERROR "Fatal error: Boost (version >= 1.70.0) required."     )
 else()
     message (STATUS "Boost_INCLUDE_DIRS: ${Boost_INCLUDE_DIRS}"                 )
-    message (STATUS "Boost_LIBRARIES: ${Boost_LIBRARIES}"                       )
+    message (STATUS "Boost_LIBRARY_DIRS: ${Boost_LIBRARY_DIRS}"                    )
     message (STATUS "Boost_VERSION: ${Boost_VERSION}"                           )
 
     include_directories (${Boost_INCLUDE_DIRS})

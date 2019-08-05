@@ -14,7 +14,7 @@ std::string strt = "Main Menu:\n"
 				   "6: Add group\n"
 				   "7: Add Trigger\n"
 				   "8: Add pin to Trigger\n",
-			nID  = "Enter nodeID: \n",
+			nID  = "Enter id: \n",
 			wiPi = "Enter wiringPi number: \n",
 			eNam = "Enter name:\n",
 			pupd = "Enter preferred pullUpDown resistor: (No resistor: 0, Down resistor: 1, Up resistor 2)\n",

@@ -7,3 +7,4 @@ cmake-build-debug/
 
 # Git files
 .git/
+!.idea/

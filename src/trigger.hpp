@@ -1,9 +1,10 @@
 #ifndef COLUMN_TRIGGER_HPP
 #define COLUMN_TRIGGER_HPP
 
-#include <boost/thread.hpp>
 #include <boost/serialization/access.hpp>
 #include <boost/serialization/nvp.hpp>
+#include <thread>
+#include <chrono>
 #include <map>
 #include <pthread.h>
 #include <vector>
@@ -23,9 +24,16 @@ public:
 	 * \param stop Stops the internal thread when the program stops
 	 */
 	void init(objectHandler *handler, volatile int *stop);
-	/*! Adds a pin by wiringPi numbering scheme ID, and the node ID the pin belongs to */
+	/*!
+	 * \brief Adds a pin by wiringPi numbering scheme ID, and the node ID the pin belongs to
+	 * \param wpi wiringPi index
+	 * \param nID node number
+	 */
 	void addPin(int wpi, unsigned int nID);
-	/*! Adds a group by group ID */
+	/*!
+	 * \brief Adds a group by group ID
+	 * \param gID group ID
+	 */
 	void addGroup(unsigned int gID);
 
 	/*!
@@ -41,26 +49,34 @@ public:
 	 */
 	void setGCond(unsigned int pos, short cond);
 
-	/*! Deletes a pin by wpi and node ID */
+	/*!
+	 * \brief Deletes a pin by wpi and node ID
+	 * \param wpi wiringPi index
+	 * \param nID node number
+	 */
 	void delPin(int wpi, unsigned int nID);
-	/*! Deletes a group by ID */
+	/*!
+	 * \brief Deletes a group by ID
+	 * \param gID group ID
+	 */
 	void delGroup(unsigned int gID);
 
-	/*! Turns the trigger on or of */
+	/*! \brief Turns the trigger on or of */
 	void toggleDetect();
-	/*! Returns whether the trigger is currently running */
+	/*! \brief Returns whether the trigger is currently running */
 	bool getDetectState();
 
-	boost::thread* getThread();
+	std::thread* getThread();
 
 	std::string name;
 private:
 	void detect();
 	volatile int *stop;
 	int timeout = 50;
+
 	bool detection = true;
 	objectHandler *handler;
-	boost::thread *thread;
+	std::thread *thread;
 
 	std::vector<tgroup> igroups, ogroups;
 	std::vector<pin> ipins, opins;

@@ -23,7 +23,7 @@ int group::addPin(int wpi, unsigned int pnodeID)
 	if (this->handler->getNode (pnodeID)->get_mode (wpi) == this->mode)
 	{
 		this->pins.emplace_back(pin());
-		this->pins.back().nodeID = pnodeID;
+		this->pins.back().id = pnodeID;
 		this->pins.back().wpi = wpi;
 
 		return 1;
@@ -44,7 +44,7 @@ int group::removePin(int wpi, int nodeID, unsigned int pos)
 		// Search for correct entry in vector
 		for (unsigned int i = 0; i < this->pins.size(); i ++)
 		{
-			if (this->pins[i].wpi == wpi && this->pins[i].nodeID == (unsigned int) nodeID)
+			if (this->pins[i].wpi == wpi && this->pins[i].id == (unsigned int) nodeID)
 			{
 				std::cout << "gpin" << i << " removed from group " << this->id << std::endl;
 				this->pins.erase(this->pins.begin() + i);
@@ -74,7 +74,7 @@ int group::toggle()
 		{   this->state = 1;    }
 
 		for (auto &pin : this->pins)
-		{   this->handler->getNode(pin.nodeID)->set_output_state(pin.wpi, this->state); }
+		{   this->handler->getNode(pin.id)->set_output_state(pin.wpi, this->state); }
 
 		return this->state;
 	}
@@ -89,7 +89,7 @@ void group::newState(int newState)
 	this->state = newState;
 
 	for (unsigned int i = 0; i < this->pins.size(); i ++)
-	{   this->handler->getNode(pins.at(i).nodeID)->set_output_state(this->pins.at(i).wpi, newState);    }
+	{   this->handler->getNode(pins.at(i).id)->set_output_state(this->pins.at(i).wpi, newState);    }
 }
 
 std::vector<pin> group::getPins()

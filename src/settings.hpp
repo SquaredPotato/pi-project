@@ -31,6 +31,7 @@ public:
 	int save(objectHandler handler);
 
 private:
+	// paths to current and old settings
 	std::string nPath, onPath = "config/old_config.xml";
 };
 

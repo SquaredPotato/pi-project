@@ -5,6 +5,7 @@ int main(int argc, char* argv[])
 	try
 	{
 		std::cout << "Welcome to PiProject!" << std::endl;
+		std::cout << "C++ version: " << __cplusplus << std::endl;
 
 		std::cout << "Setting up" << std::endl;
 		wiringPiSetup ();
@@ -16,7 +17,9 @@ int main(int argc, char* argv[])
 
 		settings settings("config/config.xml");
 
-		boost::thread poll(boost::bind(poll_loop, &handler, &settings));
+//		boost::thread poll(boost::bind(poll_loop, &handler, &settings));
+		std::thread poll(poll_loop, &handler, &settings);
+
 		poll.join();
 	}
 	catch (std::exception &e)
@@ -85,13 +88,13 @@ void poll_loop(objectHandler *handler, settings* setting)
 
 		switch (ans)
 		{
-			case 0:
+			case 0: // Stop
 			{
 				stop = 1;
 				sleep(1);
 				break;
 			}
-			case 1:
+			case 1: // Add node
 			{
 				std::string name, address;
 
@@ -101,7 +104,7 @@ void poll_loop(objectHandler *handler, settings* setting)
 				std::cout << "Node id: " << handler->createNode(name, address) << std::endl;
 				break;
 			}
-			case 2:
+			case 2: // Add input to node
 			{
 				int wpi, pud, edge;
 				unsigned int node;
@@ -116,7 +119,7 @@ void poll_loop(objectHandler *handler, settings* setting)
 				handler->getNode(node)->add_input(wpi, edge, pud, name);
 				break;
 			}
-			case 3:
+			case 3: // Add output to node
 			{
 				int wpi, state;
 				unsigned int node;
@@ -130,19 +133,26 @@ void poll_loop(objectHandler *handler, settings* setting)
 				handler->getNode(node)->add_output(wpi, state, name);
 				break;
 			}
-			case 4:
+			case 4: // Save settings
 			{
 				if (!setting->save(*handler))
 					std::cerr << "saving settings failed" << std::endl;
 				break;
 			}
-			case 5:
+			case 5: // Load settings
 			{
-				if (!setting->load(handler, &stop))
-					std::cerr << "loading settings failed" << std::endl;
+				try
+				{
+					if (!setting->load(handler, &stop))
+						std::cerr << "loading settings failed" << std::endl;
+				} catch (boost::archive::archive_exception &e)
+				{
+					std::cerr << "Error: loading settings failed: " << e.what() << std::endl;
+				}
+
 				break;
 			}
-			case 6:
+			case 6: // Add group
 			{
 				std::string name;
 				int mode;
@@ -153,16 +163,26 @@ void poll_loop(objectHandler *handler, settings* setting)
 				handler->createGroup(name, mode);
 				break;
 			}
-			case 7:
+			case 7: // Add trigger
 			{
 				std::string name;
 
 				ask(eNam, &name);
 
-				std::cout << "Trigger ID: " << handler->createTrigger(name) << std::endl;
+				try
+				{
+					std::cout << "Trigger ID: " << handler->createTrigger(name) << std::endl;
+				}
+				catch(std::exception &e)
+				{
+					std::cerr << "Error while creating trigger: " << e.what();
+				}
+
+
+
 				break;
 			}
-			case 8:
+			case 8: // Add pin to trigger
 			{
 				int wpi;
 				unsigned int nodeID, triggerID;
@@ -176,7 +196,7 @@ void poll_loop(objectHandler *handler, settings* setting)
 			}
 			default:
 			{
-				std::cout << "please enter 0 or 1" << std::endl;
+				std::cout << "please enter a number from 0 to 8" << std::endl;
 				break;
 			}
 		}

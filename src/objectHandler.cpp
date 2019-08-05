@@ -34,6 +34,7 @@ int objectHandler::createTrigger(std::string name)
 	int i = this->getFreeID(&this->tMap);
 
 	this->tMap.insert(std::make_pair(i, trigger()));
+
 	this->tMap[i].init(this, this->stop);
 
 	return i;
@@ -53,10 +54,10 @@ node* objectHandler::getNode(unsigned int id)
 
 node* objectHandler::getNode(std::string name)
 {
-	for (unsigned long i = 0; i < this->nMap.size(); i ++)
+	for (auto & i : this->nMap)
 	{
-		if (this->nMap[i].name == name)
-		{   return &this->nMap[i]; }
+		if (i.second.name == name)
+		{   return &i.second; }
 	}
 
 	return nullptr;
@@ -86,6 +87,15 @@ std::map<int, group> objectHandler::getGroups()
 std::map<int, trigger> objectHandler::getTriggers()
 {   return this->tMap;  }
 
+unsigned int objectHandler::getFreeNID()
+{   return this->getFreeID(&this->nMap);    }
+
+unsigned int objectHandler::getFreeGID()
+{   return this->getFreeID(&this->gMap);    }
+
+unsigned int objectHandler::getFreeTID()
+{   return this->getFreeID(&this->tMap);    }
+
 template <typename T>
 unsigned int objectHandler::getFreeID(std::map<int, T> *map)
 {
@@ -97,15 +107,6 @@ unsigned int objectHandler::getFreeID(std::map<int, T> *map)
 
 	return i;
 }
-
-unsigned int objectHandler::getFreeNID()
-{   return this->getFreeID(&this->nMap);    }
-
-unsigned int objectHandler::getFreeGID()
-{   return this->getFreeID(&this->gMap);    }
-
-unsigned int objectHandler::getFreeTID()
-{   return this->getFreeID(&this->tMap);    }
 
 int objectHandler::getlId()
 {   return this->lID;   }
