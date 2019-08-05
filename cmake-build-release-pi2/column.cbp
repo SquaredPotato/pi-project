@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="column"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/tmp/tmp.n6jBnPQEUa/cmake-build-release-pi2"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.n6jBnPQEUa/cmake-build-release-pi2/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.n6jBnPQEUa/cmake-build-release-pi2/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.n6jBnPQEUa/cmake-build-release-pi2/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.n6jBnPQEUa/cmake-build-release-pi2/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/tmp/tmp.n6jBnPQEUa/cmake-build-release-pi2"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.n6jBnPQEUa/cmake-build-release-pi2/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.n6jBnPQEUa/cmake-build-release-pi2/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.n6jBnPQEUa/cmake-build-release-pi2/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.n6jBnPQEUa/cmake-build-release-pi2/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/tmp/tmp.n6jBnPQEUa/cmake-build-release-pi2"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.n6jBnPQEUa/cmake-build-release-pi2/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.n6jBnPQEUa/cmake-build-release-pi2/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.n6jBnPQEUa/cmake-build-release-pi2/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.n6jBnPQEUa/cmake-build-release-pi2/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="column">
+				<Option output="/tmp/tmp.n6jBnPQEUa/cmake-build-release-pi2/column" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.n6jBnPQEUa/cmake-build-release-pi2"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/boost/1_70_0/include"/>
+					<Add directory="/home/pi/include"/>
+					<Add directory="/tmp/tmp.n6jBnPQEUa/./include"/>
+					<Add directory="/usr/local/gcc-8.1.0/lib/gcc/arm-linux-gnueabihf/8.1.0/../../../../include/c++/8.1.0"/>
+					<Add directory="/usr/local/gcc-8.1.0/lib/gcc/arm-linux-gnueabihf/8.1.0/../../../../include/c++/8.1.0/arm-linux-gnueabihf/."/>
+					<Add directory="/usr/local/gcc-8.1.0/lib/gcc/arm-linux-gnueabihf/8.1.0/../../../../include/c++/8.1.0/backward"/>
+					<Add directory="/usr/local/gcc-8.1.0/lib/gcc/arm-linux-gnueabihf/8.1.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/local/gcc-8.1.0/include"/>
+					<Add directory="/usr/local/gcc-8.1.0/lib/gcc/arm-linux-gnueabihf/8.1.0/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.n6jBnPQEUa/cmake-build-release-pi2/Makefile&quot;  VERBOSE=1 column"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.n6jBnPQEUa/cmake-build-release-pi2/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.n6jBnPQEUa/cmake-build-release-pi2/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.n6jBnPQEUa/cmake-build-release-pi2/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="column/fast">
+				<Option output="/tmp/tmp.n6jBnPQEUa/cmake-build-release-pi2/column" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/tmp/tmp.n6jBnPQEUa/cmake-build-release-pi2"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/local/boost/1_70_0/include"/>
+					<Add directory="/home/pi/include"/>
+					<Add directory="/tmp/tmp.n6jBnPQEUa/./include"/>
+					<Add directory="/usr/local/gcc-8.1.0/lib/gcc/arm-linux-gnueabihf/8.1.0/../../../../include/c++/8.1.0"/>
+					<Add directory="/usr/local/gcc-8.1.0/lib/gcc/arm-linux-gnueabihf/8.1.0/../../../../include/c++/8.1.0/arm-linux-gnueabihf/."/>
+					<Add directory="/usr/local/gcc-8.1.0/lib/gcc/arm-linux-gnueabihf/8.1.0/../../../../include/c++/8.1.0/backward"/>
+					<Add directory="/usr/local/gcc-8.1.0/lib/gcc/arm-linux-gnueabihf/8.1.0/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/local/gcc-8.1.0/include"/>
+					<Add directory="/usr/local/gcc-8.1.0/lib/gcc/arm-linux-gnueabihf/8.1.0/include-fixed"/>
+					<Add directory="/usr/include/arm-linux-gnueabihf"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/tmp/tmp.n6jBnPQEUa/cmake-build-release-pi2/Makefile&quot;  VERBOSE=1 column/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/tmp/tmp.n6jBnPQEUa/cmake-build-release-pi2/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.n6jBnPQEUa/cmake-build-release-pi2/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/tmp/tmp.n6jBnPQEUa/cmake-build-release-pi2/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/tmp/tmp.n6jBnPQEUa/src/I2CDevice.cpp">
+			<Option target="column"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.n6jBnPQEUa/src/I2CDevice.hpp">
+			<Option target="column"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.n6jBnPQEUa/src/definitions.hpp">
+			<Option target="column"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.n6jBnPQEUa/src/group.cpp">
+			<Option target="column"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.n6jBnPQEUa/src/group.hpp">
+			<Option target="column"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.n6jBnPQEUa/src/main.cpp">
+			<Option target="column"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.n6jBnPQEUa/src/node.cpp">
+			<Option target="column"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.n6jBnPQEUa/src/node.hpp">
+			<Option target="column"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.n6jBnPQEUa/src/objectHandler.cpp">
+			<Option target="column"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.n6jBnPQEUa/src/objectHandler.hpp">
+			<Option target="column"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.n6jBnPQEUa/src/pin.cpp">
+			<Option target="column"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.n6jBnPQEUa/src/settings.cpp">
+			<Option target="column"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.n6jBnPQEUa/src/settings.hpp">
+			<Option target="column"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.n6jBnPQEUa/src/strings.hpp">
+			<Option target="column"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.n6jBnPQEUa/src/trigger.cpp">
+			<Option target="column"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.n6jBnPQEUa/src/trigger.hpp">
+			<Option target="column"/>
+		</Unit>
+		<Unit filename="/tmp/tmp.n6jBnPQEUa/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

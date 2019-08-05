@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" autoUpload="On explicit save action" promptOnRemoteOverwrite="CHECK_CONTENT" createEmptyFolders="true">
+    <serverData>
+      <paths name="pi2 (4fd92464-fcbb-4157-ae94-296b12c9a1ef)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/tmp/tmp.n6jBnPQEUa" local="$PROJECT_DIR$" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug-pi2" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-release-pi2" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myAutoUpload" value="ON_EXPLICIT_SAVE" />
+  </component>
+</project>

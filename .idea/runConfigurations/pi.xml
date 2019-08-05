@@ -1,0 +1,6 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="pi" type="CLion_Remote" factoryName="GDB Remote Debug" remoteCommand="raspberrypi2.local:1234" symbolFile="" sysroot="/">
+    <pathMapping remote=":/home/pi/pi-project/" local="$PROJECT_DIR$/" />
+    <method />
+  </configuration>
+</component>

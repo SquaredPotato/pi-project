@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Build All" type="CMakeRunConfiguration" factoryName="Application" singleton="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="column" TARGET_NAME="column" CONFIG_NAME="Debug-pi2" RUN_TARGET_PROJECT_NAME="column" RUN_TARGET_NAME="column">
+    <envs>
+      <env name="LD_LIBRARY_PATH" value="/usr/local/boost/1_70_0/lib:$LD_LIBRARY_PATH" />
+    </envs>
+    <method v="2">
+      <option name="FtpUpload" enabled="true">
+        <server_id>4fd92464-fcbb-4157-ae94-296b12c9a1ef</server_id>
+        <server_name>pi2 (4fd92464-fcbb-4157-ae94-296b12c9a1ef)</server_name>
+        <group_name />
+        <path>$PROJECT_DIR$/src</path>
+      </option>
+      <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+    </method>
+  </configuration>
+</component>

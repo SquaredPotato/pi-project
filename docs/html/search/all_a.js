@@ -7,7 +7,7 @@ var searchData=
   ['node',['node',['../classnode.html',1,'node'],['../classnode.html#a82669b7358b50bd8d7888d7df4ff8dfa',1,'node::node()']]],
   ['node_2ecpp',['node.cpp',['../node_8cpp.html',1,'']]],
   ['node_2ehpp',['node.hpp',['../node_8hpp.html',1,'']]],
-  ['nodeid',['nodeID',['../structpin.html#a02e22ca799534a557d9de6bcd2400db4',1,'pin']]],
+  ['nodeid',['id',['../structpin.html#a02e22ca799534a557d9de6bcd2400db4',1,'pin']]],
   ['nor',['NOR',['../pin_8hpp.html#ae1271a8dd387625d64abd75d7c443a38ae11143b557a102e979014e3ae824172f',1,'pin.hpp']]],
   ['npin',['npin',['../structnpin.html',1,'']]],
   ['numberofgroups',['numGroups',['../classobject_handler.html#a47a097dca2f6e8c812c70a93989e044a',1,'objectHandler']]],

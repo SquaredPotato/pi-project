@@ -20,7 +20,7 @@ var searchData=
   ['getpins',['getPins',['../classgroup.html#ab42f0d1867f577696cdca1cecf004d8c',1,'group']]],
   ['gettrigger',['getTrigger',['../classobject_handler.html#a094236989effce25eef11cca359d564e',1,'objectHandler']]],
   ['gettriggers',['getTriggers',['../classobject_handler.html#a97a21980838700170810902024300c84',1,'objectHandler']]],
-  ['gid',['gID',['../structtgroup.html#aa27aaf934b73366a4b157442f29eb90b',1,'tgroup']]],
+  ['gid',['id',['../structtgroup.html#aa27aaf934b73366a4b157442f29eb90b',1,'tgroup']]],
   ['gpin',['gpin',['../structtgroup.html#a8b5052c5b39ff91bffc8d0961170672f',1,'tgroup']]],
   ['group',['group',['../classgroup.html',1,'group'],['../classgroup.html#ad9d5836aea085e5b55ecb077d15a6189',1,'group::group()']]],
   ['group_2ecpp',['group.cpp',['../group_8cpp.html',1,'']]],

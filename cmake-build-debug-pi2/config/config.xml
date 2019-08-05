@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="17">
+<handler class_id="0" tracking_level="0" version="0">
+	<master>1</master>
+	<lID>0</lID>
+	<nMap class_id="1" tracking_level="0" version="0">
+		<count>1</count>
+		<item_version>0</item_version>
+		<item class_id="2" tracking_level="0" version="0">
+			<first>0</first>
+			<second class_id="3" tracking_level="0" version="0">
+				<id>0</id>
+				<name>local</name>
+				<location>0.0.0.0</location>
+				<pr>0</pr>
+				<pins class_id="4" tracking_level="0" version="0">
+					<count>2</count>
+					<item_version>0</item_version>
+					<item class_id="5" tracking_level="0" version="0">
+						<first>3</first>
+						<second class_id="6" tracking_level="0" version="0">
+							<pin>0</pin>
+							<state>0</state>
+							<edge>0</edge>
+							<updown>0</updown>
+							<pwm>0</pwm>
+							<name>laser</name>
+						</second>
+					</item>
+					<item>
+						<first>6</first>
+						<second>
+							<pin>1</pin>
+							<state>0</state>
+							<edge>0</edge>
+							<updown>0</updown>
+							<pwm>0</pwm>
+							<name>led</name>
+						</second>
+					</item>
+				</pins>
+			</second>
+		</item>
+	</nMap>
+	<gMap class_id="7" tracking_level="0" version="0">
+		<count>0</count>
+		<item_version>0</item_version>
+	</gMap>
+	<tMap class_id="8" tracking_level="0" version="0">
+		<count>1</count>
+		<item_version>0</item_version>
+		<item class_id="9" tracking_level="0" version="0">
+			<first>0</first>
+			<second class_id="10" tracking_level="0" version="0">
+				<timeout>50</timeout>
+				<detection>1</detection>
+				<igroups class_id="11" tracking_level="0" version="0">
+					<count>0</count>
+					<item_version>0</item_version>
+				</igroups>
+				<ogroups>
+					<count>0</count>
+					<item_version>0</item_version>
+				</ogroups>
+				<ipins class_id="12" tracking_level="0" version="0">
+					<count>1</count>
+					<item_version>0</item_version>
+					<item class_id="13" tracking_level="0" version="0">
+						<wpi>3</wpi>
+						<condition>2</condition>
+						<id>0</id>
+					</item>
+				</ipins>
+				<opins>
+					<count>1</count>
+					<item_version>0</item_version>
+					<item>
+						<wpi>6</wpi>
+						<condition>2</condition>
+						<id>0</id>
+					</item>
+				</opins>
+			</second>
+		</item>
+	</tMap>
+</handler>

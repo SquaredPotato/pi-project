@@ -104,7 +104,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abd37838876d38220a321edfc7415f78c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgroup.html#abd37838876d38220a321edfc7415f78c">addPin</a> (int wpi, unsigned int pnodeID)</td></tr>
 <tr class="memdesc:abd37838876d38220a321edfc7415f78c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a pin to the group.  <a href="#abd37838876d38220a321edfc7415f78c">More...</a><br /></td></tr>
 <tr class="separator:abd37838876d38220a321edfc7415f78c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7bb4308f0d8525c018b5cc9dd59df9e6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgroup.html#a7bb4308f0d8525c018b5cc9dd59df9e6">removePin</a> (int wpi, int nodeID, unsigned int pos)</td></tr>
+<tr class="memitem:a7bb4308f0d8525c018b5cc9dd59df9e6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgroup.html#a7bb4308f0d8525c018b5cc9dd59df9e6">removePin</a> (int wpi, int id, unsigned int pos)</td></tr>
 <tr class="memdesc:a7bb4308f0d8525c018b5cc9dd59df9e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a pin from the group.  <a href="#a7bb4308f0d8525c018b5cc9dd59df9e6">More...</a><br /></td></tr>
 <tr class="separator:a7bb4308f0d8525c018b5cc9dd59df9e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1010617fb21524463cfad96fc317e505"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classgroup.html#a1010617fb21524463cfad96fc317e505">toggle</a> ()</td></tr>
@@ -177,7 +177,7 @@ Friends</h2></td></tr>
 <p>This also automatically checks whether the pin is in the same mode as the group </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">wpi</td><td>The wiringPi numbering scheme index of the pin to be added </td></tr>
-    <tr><td class="paramname">pnodeID</td><td>The nodeID of the pin to added </td></tr>
+    <tr><td class="paramname">pnodeID</td><td>The id of the pin to added </td></tr>
   </table>
   </dd>
 </dl>
@@ -307,7 +307,7 @@ Friends</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>nodeID</em>, </td>
+          <td class="paramname"><em>id</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -327,7 +327,7 @@ Friends</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">wpi</td><td>The wiringPi numbering scheme index of the pin to be removed </td></tr>
-    <tr><td class="paramname">nodeID</td><td>The nodeID of the pin to be removed </td></tr>
+    <tr><td class="paramname">id</td><td>The id of the pin to be removed </td></tr>
     <tr><td class="paramname">pos</td><td>If you know the position of the pin in the internal map, set the others to null </td></tr>
   </table>
   </dd>
