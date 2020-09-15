@@ -1,21 +1,12 @@
-#include <boost/archive/xml_iarchive.hpp>
-#include <boost/archive/xml_oarchive.hpp>
-#include <boost/archive/archive_exception.hpp>
-#include <boost/serialization/map.hpp>
-#include <boost/serialization/vector.hpp>
-#include <boost/serialization/array.hpp>
-#include <boost/serialization/string.hpp>
-#include <boost/serialization/binary_object.hpp>
 #include "settings.hpp"
-#include <boost/filesystem.hpp>
-#include <boost/filesystem/exception.hpp>
 
 settings::settings(std::string nodePath)
 {   this->nPath = std::move(nodePath);  }
 
-int settings::load(objectHandler *handler, volatile int* stop)
+int settings::load(objectHandler handler, std::atomic_bool *stop)
 {
-	namespace fs = boost::filesystem;
+//	namespace fs = boost::filesystem;
+	namespace fs = std::filesystem;
 
 	try
 	{
@@ -23,43 +14,47 @@ int settings::load(objectHandler *handler, volatile int* stop)
 		{
 			std::ifstream is(this->nPath.c_str());
 
+			// De-activate any active detect threads
+			for (std::pair<const int, trigger> &a : handler.tMap)
 			{
-				boost::archive::xml_iarchive xiarch(is);
-
-				// De-activate any active detect threads
-				for (std::pair<const int, trigger> &a : handler->tMap)
+				if (a.second.getDetectState())
 				{
-					if (a.second.getDetectState())
-					{
-						a.second.toggleDetect();
-					}
+					a.second.toggleDetect();
 				}
-
-				// Clear maps to prevent segfault
-				handler->tMap.clear();
-				handler->gMap.clear();
-				handler->nMap.clear();
-
-				// Load settings from file
-				xiarch >> boost::serialization::make_nvp("handler", handler);
 			}
 
-			handler->init(stop);
+			// Clear maps to prevent segfault
+			handler.tMap.clear();
+			handler.gMap.clear();
+			handler.nMap.clear();
+
+			std::cout << "Settings.cpp: " << handler.getTriggers().size();
+
+			boost::archive::xml_iarchive xiarch(is);
+
+			// Load settings from file
+			xiarch >> boost::serialization::make_nvp("handler", handler);
+
+			std::cout << "Settings.cpp: " << handler.getTriggers().size();
+
+			handler.init(stop);
+
+			std::cout << "Settings.cpp: " << handler.getTriggers().size();
 
 			// Re-initialize nodes and corresponding pins
 			std::cout << "loading nodes" << std::endl;
-			for (unsigned int i = 0; i < handler->getFreeNID(); i ++)
-			{   handler->getNode(i)->reInit();  }
+			for (unsigned int i = 0; i < handler.getFreeNID(); i ++)
+			{   handler.getNode(i)->reInit();  }
 
 			// Re-init groups
 			std::cout << "loading groups" << std::endl;
-			for (unsigned int i = 0; i < handler->getFreeGID(); i ++)
-			{   handler->getGroup(i)->setHandler(handler);  }
+			for (unsigned int i = 0; i < handler.getFreeGID(); i ++)
+			{   handler.getGroup(i)->setHandler(&handler);  }
 
 			// Re-enable triggers
 			std::cout << "loading triggers" << std::endl;
-			for (unsigned int i = 0; i < handler->getFreeTID(); i ++)
-			{   handler->getTrigger(i)->init(handler, stop);    }
+			for (unsigned int i = 0; i < handler.getFreeTID(); i ++)
+			{   handler.getTrigger(i)->init(&handler);    }
 
 			std::cout << "loaded settings" << std::endl;
 		}
@@ -77,7 +72,8 @@ int settings::load(objectHandler *handler, volatile int* stop)
 
 int settings::save(objectHandler handler)
 {
-	namespace fs = boost::filesystem;
+//		namespace fs = boost::filesystem;
+	namespace fs = std::filesystem;
 
 	// make one backup of files
 	if (fs::exists (fs::path(this->nPath)))
@@ -99,7 +95,7 @@ int settings::save(objectHandler handler)
 	try
 	{
 		std::cout << "creating output filestreams..." << std::endl;
-		// write maps to fileds
+		// write maps to files
 		std::ofstream nodes(this->nPath);
 //		fs::ofstream nodes(this->nPath);
 		boost::archive::xml_oarchive noarch(nodes);

@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <fstream>
+//#include <experimental/filesystem>
+#include <filesystem>
 
 #include <boost/filesystem.hpp>
 #include <boost/filesystem/exception.hpp>
@@ -23,10 +25,10 @@ class objectHandler;
 class settings
 {
 public:
-	settings(std::string nodePath);
+	explicit settings(std::string nodePath);
 
 	/*! Loads setting into given objects */
-	int load(objectHandler *handler, volatile int* stop);
+	int load(objectHandler handler, std::atomic_bool *stop);
 	/*! Saves settings from given objects */
 	int save(objectHandler handler);
 

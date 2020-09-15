@@ -3,15 +3,15 @@
 objectHandler::objectHandler()
 =default;
 
-void objectHandler::init(volatile int *stop)
+void objectHandler::init(std::atomic_bool *stop)
 {
 	this->stop = stop;
 	this->lID = this->getFreeNID();
 }
 
-int objectHandler::createNode (std::string name, std::string address)
+unsigned int objectHandler::createNode (std::string name, std::string address)
 {
-	int i = this->getFreeID(&this->nMap);
+	unsigned int i = this->getFreeID(&this->nMap);
 
 	this->nMap[i] = node();
 	this->nMap[i].init(std::move(name), i, std::move(address));
@@ -19,9 +19,9 @@ int objectHandler::createNode (std::string name, std::string address)
 	return i;
 }
 
-int objectHandler::createGroup (std::string name, int mode)
+unsigned int objectHandler::createGroup (std::string name, int mode)
 {
-	int i = this->getFreeID(&this->gMap);
+	unsigned int i = this->getFreeID(&this->gMap);
 
 	this->gMap.insert(std::make_pair(i, group()));
 	this->gMap[i].init(i, std::move(name), mode, this);
@@ -29,13 +29,13 @@ int objectHandler::createGroup (std::string name, int mode)
 	return i;
 }
 
-int objectHandler::createTrigger(std::string name)
+unsigned int objectHandler::createTrigger(std::string name)
 {
-	int i = this->getFreeID(&this->tMap);
+	unsigned int i = this->getFreeID(&this->tMap);
 
 	this->tMap.insert(std::make_pair(i, trigger()));
 
-	this->tMap[i].init(this, this->stop);
+	this->tMap[i].init(this);
 
 	return i;
 }
@@ -108,7 +108,7 @@ unsigned int objectHandler::getFreeID(std::map<int, T> *map)
 	return i;
 }
 
-int objectHandler::getlId()
+unsigned int objectHandler::getlId()
 {   return this->lID;   }
 
 bool objectHandler::getMaster()

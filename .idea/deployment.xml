@@ -8,6 +8,21 @@
             <mapping deploy="/tmp/tmp.n6jBnPQEUa" local="$PROJECT_DIR$" />
           </mappings>
           <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug-piz" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-release-piz" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug-pi2" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-release-pi2" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+      <paths name="piz (656409a1-6d43-4702-93a1-235f223fd2df)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/tmp/tmp.2rfXmuk6cs" local="$PROJECT_DIR$" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug-piz" />
+            <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-release-piz" />
             <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-debug-pi2" />
             <excludedPath local="true" path="$PROJECT_DIR$/cmake-build-release-pi2" />
           </excludedPaths>

@@ -21,7 +21,4 @@
 void poll_loop(objectHandler *handler, settings* setting);
 int run_test(objectHandler *handler, settings *setting);
 
-// Global variables
-volatile int stop = 0;
-
 #endif //COLUMN_DEFINITIONS_H

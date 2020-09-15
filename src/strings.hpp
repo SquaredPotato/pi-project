@@ -5,7 +5,7 @@
 
 // Strings for console 'menu'
 std::string strt = "Main Menu:\n"
-				   "0: stop\n"
+				   "0: STOP\n"
 				   "1: Add node\n"
 				   "2: Add input\n"
 				   "3: Add output\n"
@@ -13,7 +13,8 @@ std::string strt = "Main Menu:\n"
 				   "5: Load settings\n"
 				   "6: Add group\n"
 				   "7: Add Trigger\n"
-				   "8: Add pin to Trigger\n",
+				   "8: Add pin to Trigger\n"
+                   "99: Run test\n",
 			nID  = "Enter id: \n",
 			wiPi = "Enter wiringPi number: \n",
 			eNam = "Enter name:\n",

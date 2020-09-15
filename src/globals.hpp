@@ -5,4 +5,8 @@
 #ifndef COLUMN_GLOBALS_HPP
 #define COLUMN_GLOBALS_HPP
 
+#include <atomic>
+
+extern std::atomic<bool> STOP;
+
 #endif //COLUMN_GLOBALS_HPP

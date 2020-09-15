@@ -6,7 +6,7 @@
 group::group ()
 =default;
 
-void group::init(int id, std::string name, int mode, objectHandler *handler)
+void group::init(unsigned int id, std::string name, int mode, objectHandler *handler)
 {
 	this->id = id;
 	this->mode = mode;
@@ -36,7 +36,7 @@ int group::addPin(int wpi, unsigned int pnodeID)
 	return 0;
 }
 
-int group::removePin(int wpi, int nodeID, unsigned int pos)
+int group::removePin(int wpi, int nodeID)
 {
 	// Select selection method (by gpin data or position in vector)
 	if (wpi != -1 && nodeID != -1)
@@ -53,14 +53,21 @@ int group::removePin(int wpi, int nodeID, unsigned int pos)
 			}
 		}
 	}
-	else if (pos != NULL)
+
+	std::cerr << "Wrong arguments used when removing gpin from group " << this->id << std::endl;
+	return 0;
+}
+
+int group::removePin(unsigned int pos)
+{
+	try
 	{
 		this->pins.erase(this->pins.begin() + pos);
 		std::cout << "gpin" << pos << " removed from group " << this->id << std::endl;
 		return 1;
-	}
+	} catch (std::out_of_range &e)
+	{   std::cerr << "tried to remove a pin from group [" << this->id << "], but it wasn't found!"; }
 
-	std::cout << "Wrong arguments used when removing gpin from group " << this->id << std::endl;
 	return 0;
 }
 

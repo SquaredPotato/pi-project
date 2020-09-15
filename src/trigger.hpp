@@ -8,6 +8,7 @@
 #include <map>
 #include <pthread.h>
 #include <vector>
+#include "globals.hpp"
 #include "node.hpp"
 #include "group.hpp"
 #include "pin.cpp"
@@ -23,7 +24,7 @@ public:
 	 * \param handler ObjectHandler, required for getting pin information
 	 * \param stop Stops the internal thread when the program stops
 	 */
-	void init(objectHandler *handler, volatile int *stop);
+	void init(objectHandler *handler);
 	/*!
 	 * \brief Adds a pin by wiringPi numbering scheme ID, and the node ID the pin belongs to
 	 * \param wpi wiringPi index
@@ -43,9 +44,9 @@ public:
 	 */
 	void setPCond(unsigned int pos, short cond);
 	/*!
-	 * \brief Sets pin condition by position in the internal vector to one of \link #conds \endlink condtions
+	 * \brief Sets pin condition by position in the internal vector to one of \link conds \endlink condtions
 	 * \param pos Position in internal map
-	 * \param cond Condition, must be one of \link #conds \endlink 's values
+	 * \param cond Condition, must be one of {@link conds#OR} 's values
 	 */
 	void setGCond(unsigned int pos, short cond);
 
@@ -71,7 +72,6 @@ public:
 	std::string name;
 private:
 	void detect();
-	volatile int *stop;
 	int timeout = 50;
 
 	bool detection = true;

@@ -5,7 +5,7 @@
 node::node()
 =default;
 
-void node::init(std::string name, int id, std::string address)
+void node::init(std::string name, unsigned int id, std::string address)
 {
 	this->name = std::move(name);
 	this->id = id;
@@ -102,7 +102,6 @@ void node::add_pwm_output (int wpi, unsigned int pwmr, int pwmc, int pwmm, int p
 void node::set_output_state (int wpi, int state)
 {
 	digitalWrite (wpi, state);
-
 	this->pins.at(wpi).s = state;
 }
 

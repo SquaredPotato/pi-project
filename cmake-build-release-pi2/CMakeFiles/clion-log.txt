@@ -1,8 +1,1 @@
-/usr/bin/cmake -DCMAKE_BUILD_TYPE=Release -G "CodeBlocks - Unix Makefiles" /tmp/tmp.n6jBnPQEUa
--- Boost version: 1.70.0
--- Boost_INCLUDE_DIRS: /usr/local/boost/1_70_0/include
--- Boost_LIBRARY_DIRS: /usr/local/boost/1_70_0/lib
--- Boost_VERSION: 107000
--- Configuring done
--- Generating done
--- Build files have been written to: /tmp/tmp.n6jBnPQEUa/cmake-build-release-pi2
+CMake executable not found: /usr/bin/cmake Configure

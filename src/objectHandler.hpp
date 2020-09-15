@@ -22,7 +22,7 @@ public:
 	 * \brief Sets global stop variable
 	 * \param stop  Pointer to global stop variable
 	 */
-	void init(volatile int* stop);
+	void init(std::atomic_bool *stop);
 
 	/*!
 	 * \brief Creates and initialises a node
@@ -30,20 +30,20 @@ public:
 	 * \param address, the IP address of the node
 	 * \return nodeID
 	 */
-	int createNode(std::string name, std::string address);
+	unsigned int createNode(std::string name, std::string address);
 	/*!
 	 * \brief Creates and initialises a group
 	 * \param name
 	 * \param mode, either INPUT or OUTPUT
 	 * \return groupID
 	 */
-	int createGroup(std::string name, int mode);
+	unsigned int createGroup(std::string name, int mode);
 	/*!
 	 * \brief Creates and initialises a trigger
 	 * \param name
 	 * \return triggerID
 	 */
-	int createTrigger(std::string name);
+	unsigned int createTrigger(std::string name);
 
 	/*!
 	 * \brief Deletes a node
@@ -92,15 +92,14 @@ public:
 	unsigned int getFreeTID();
 
 	/*! Returns local node id */
-	int getlId();
+	unsigned int getlId();
 	/*! Returns whether this node is the master or not */
 	bool getMaster();
 private:
 	friend class boost::serialization::access;
 	friend class settings;
-	friend class connection;
 
-	volatile int *stop;
+	std::atomic_bool *stop;
 
 	template <typename T>
 	unsigned int getFreeID(std::map<int, T> *map);
@@ -112,7 +111,7 @@ private:
 
 	// is this the master bool, and local id
 	bool master = true;
-	int lID;
+	unsigned int lID;
 
 	template<class Archive>
 	void serialize(Archive & ar, unsigned int version)

@@ -1,10 +1,9 @@
 # CMake files
-CMakeCache.txt
-cmake-build-debug/
+*CMakeCache.txt
+*cmake-build*
 
 # CLion project files
-.idea/
+*.idea/
 
 # Git files
-.git/
-!.idea/
+*.git/

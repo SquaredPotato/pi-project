@@ -4,9 +4,8 @@
 trigger::trigger()
 {   }
 
-void trigger::init(objectHandler *handler, volatile int *stop)
+void trigger::init(objectHandler *handler)
 {
-	this->stop = stop;
 	this->handler = handler;
 
 	std::thread detect_(&trigger::detect, this);
@@ -25,7 +24,7 @@ void trigger::detect()
 	bool gcond;
 
 	// Run loop while the process is running and this trigger is active
-	while (!*this->stop && this->detection)
+	while (!STOP && this->detection)
 	{
 		cond = true;
 		pcond = true;
@@ -77,6 +76,8 @@ void trigger::detect()
 
 		std::this_thread::sleep_for(timeout_ns);
 	}
+
+	this->detection = false;
 }
 
 void trigger::addPin(int wpi, unsigned int nID)
@@ -118,8 +119,7 @@ void trigger::setGCond(unsigned int pos, short cond)
 
 void trigger::delPin(int wpi, unsigned int nID)
 {
-	// TODO: Test this bit
-	// Get appropriate vector for pin (in/output vector)
+	// Get appropriate vector for pin (in/output vector) based on pin mode registered in node
 	std::vector<pin>* tmp = this->handler->getNode(nID)->get_mode(wpi) == OUTPUT ? &this->opins : &this->ipins;
 
 	// Delete entry from vector
@@ -127,40 +127,21 @@ void trigger::delPin(int wpi, unsigned int nID)
 	{
 		if (tmp->at(i).id == nID && tmp->at(i).wpi == wpi)
 		{
-			tmp->erase(tmp->begin() + i);
-			tmp->shrink_to_fit();
+			try
+			{
+				tmp->erase(tmp->begin() + i);
+				tmp->shrink_to_fit();
+			} catch (std::out_of_range &e)
+			{
+				std::cerr << "tried to remove " << wpi << ", " << nID << ", didn't work. Out of range" << std::endl;
+			}
 		}
 	}
-
-//	// Get mode of gpin so that we only search in the correct vector
-//	if (this->handler->getNode(nID)->get_mode(wpi) == OUTPUT)
-//	{
-//		for (unsigned int i = 0; i < this->opins.size(); i ++)
-//		{
-//			if (this->opins.at(i).id == nID && this->opins.at(i).wpi == wpi)
-//			{
-//				this->opins.erase(this->opins.begin() + i);
-//				this->opins.shrink_to_fit();
-//			}
-//		}
-//	}
-//	else
-//	{
-//		for (unsigned int i = 0; i < this->ipins.size(); i ++)
-//		{
-//			if (this->ipins.at(i).id == nID && this->ipins.at(i).wpi == wpi)
-//			{
-//				this->ipins.erase(this->ipins.begin() + i);
-//				this->ipins.shrink_to_fit();
-//			}
-//		}
-//	}
 }
 
 void trigger::delGroup(unsigned int gID)
 {
-	// TODO: Test this bit
-	// Get appropriate vector for group (in/output vector)
+	// Get appropriate vector for group (in/output vector) based on group mode
 	std::vector<tgroup>* tmp = this->handler->getGroup(gID)->getMode() == OUTPUT ? &this->ogroups : &this->igroups;
 
 	// Delete entry from vector
@@ -172,29 +153,6 @@ void trigger::delGroup(unsigned int gID)
 			tmp->shrink_to_fit();
 		}
 	}
-
-//	if (this->handler->getGroup(id)->getMode() == OUTPUT)
-//	{
-//		for (unsigned int i = 0; i < this->ogroups.size(); i ++)
-//		{
-//			if (this->ogroups.at(i).id == id)
-//			{
-//				this->ogroups.erase(this->ogroups.begin() + i);
-//				this->ogroups.shrink_to_fit();
-//			}
-//		}
-//	}
-//	else
-//	{
-//		for (unsigned int i = 0; i < this->igroups.size(); i ++)
-//		{
-//			if (this->igroups.at(i).id == id)
-//			{
-//				this->igroups.erase(this->igroups.begin() + i);
-//				this->igroups.shrink_to_fit();
-//			}
-//		}
-//	}
 }
 
 void trigger::toggleDetect()
@@ -203,12 +161,11 @@ void trigger::toggleDetect()
 	{ this->detection = false;
 		std::cout << "Detection disabled" << std::endl;
 	}
-
-	if (!this->detection)
+	else
 	{
 		std::thread detect_(&trigger::detect, this);
-		this->thread->detach();
 		this->thread = &detect_;
+		this->thread->detach();
 		this->detection = true;
 		std::cout << "Detection re-enabled" << std::endl;
 	}

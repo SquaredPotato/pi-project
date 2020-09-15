@@ -11,32 +11,43 @@
 			<first>0</first>
 			<second class_id="3" tracking_level="0" version="0">
 				<id>0</id>
-				<name>local</name>
-				<location>0.0.0.0</location>
+				<name>test</name>
+				<location>localhost</location>
 				<pr>0</pr>
 				<pins class_id="4" tracking_level="0" version="0">
-					<count>2</count>
+					<count>3</count>
 					<item_version>0</item_version>
 					<item class_id="5" tracking_level="0" version="0">
-						<first>3</first>
+						<first>0</first>
 						<second class_id="6" tracking_level="0" version="0">
 							<pin>0</pin>
 							<state>0</state>
-							<edge>0</edge>
-							<updown>0</updown>
+							<edge>3</edge>
+							<updown>1</updown>
 							<pwm>0</pwm>
-							<name>laser</name>
+							<name>DIP</name>
 						</second>
 					</item>
 					<item>
-						<first>6</first>
+						<first>1</first>
+						<second>
+							<pin>0</pin>
+							<state>0</state>
+							<edge>3</edge>
+							<updown>0</updown>
+							<pwm>0</pwm>
+							<name>dist</name>
+						</second>
+					</item>
+					<item>
+						<first>7</first>
 						<second>
 							<pin>1</pin>
 							<state>0</state>
 							<edge>0</edge>
 							<updown>0</updown>
 							<pwm>0</pwm>
-							<name>led</name>
+							<name>LED</name>
 						</second>
 					</item>
 				</pins>
@@ -44,39 +55,78 @@
 		</item>
 	</nMap>
 	<gMap class_id="7" tracking_level="0" version="0">
-		<count>0</count>
+		<count>2</count>
 		<item_version>0</item_version>
+		<item class_id="8" tracking_level="0" version="0">
+			<first>0</first>
+			<second class_id="9" tracking_level="0" version="0">
+				<id>0</id>
+				<name>testgroup</name>
+				<mode>0</mode>
+				<pins class_id="10" tracking_level="0" version="0">
+					<count>1</count>
+					<item_version>0</item_version>
+					<item class_id="11" tracking_level="0" version="0">
+						<wpi>1</wpi>
+						<condition>2</condition>
+						<id>0</id>
+					</item>
+				</pins>
+				<state>0</state>
+			</second>
+		</item>
+		<item>
+			<first>1</first>
+			<second>
+				<id>1</id>
+				<name>testgroup2</name>
+				<mode>0</mode>
+				<pins>
+					<count>1</count>
+					<item_version>0</item_version>
+					<item>
+						<wpi>0</wpi>
+						<condition>2</condition>
+						<id>0</id>
+					</item>
+				</pins>
+				<state>0</state>
+			</second>
+		</item>
 	</gMap>
-	<tMap class_id="8" tracking_level="0" version="0">
+	<tMap class_id="12" tracking_level="0" version="0">
 		<count>1</count>
 		<item_version>0</item_version>
-		<item class_id="9" tracking_level="0" version="0">
+		<item class_id="13" tracking_level="0" version="0">
 			<first>0</first>
-			<second class_id="10" tracking_level="0" version="0">
+			<second class_id="14" tracking_level="0" version="0">
 				<timeout>50</timeout>
 				<detection>1</detection>
-				<igroups class_id="11" tracking_level="0" version="0">
-					<count>0</count>
+				<igroups class_id="15" tracking_level="0" version="0">
+					<count>2</count>
 					<item_version>0</item_version>
+					<item class_id="16" tracking_level="0" version="0">
+						<id>0</id>
+						<condition>2</condition>
+					</item>
+					<item>
+						<id>1</id>
+						<condition>0</condition>
+					</item>
 				</igroups>
 				<ogroups>
 					<count>0</count>
 					<item_version>0</item_version>
 				</ogroups>
-				<ipins class_id="12" tracking_level="0" version="0">
-					<count>1</count>
+				<ipins>
+					<count>0</count>
 					<item_version>0</item_version>
-					<item class_id="13" tracking_level="0" version="0">
-						<wpi>3</wpi>
-						<condition>2</condition>
-						<id>0</id>
-					</item>
 				</ipins>
 				<opins>
 					<count>1</count>
 					<item_version>0</item_version>
 					<item>
-						<wpi>6</wpi>
+						<wpi>7</wpi>
 						<condition>2</condition>
 						<id>0</id>
 					</item>
@@ -85,3 +135,4 @@
 		</item>
 	</tMap>
 </handler>
+</boost_serialization>

@@ -22,7 +22,7 @@ public:
 	 * \param id ID of the node, given by the \link #objectHandler \endlink
 	 * \param address IP Address, for us in later implentation
 	 */
-	void init(std::string name, int id, std::string address);
+	void init(std::string name, unsigned int id, std::string address);
 
 	/*! Re-initalizes node, needed if settings are loaded after a reboot */
 	void reInit ();
@@ -76,7 +76,7 @@ public:
 private:
 	//identity of object
 	std::string location;
-	int id;
+	unsigned int id;
 
 	/*\
 	|*|  pm: pwm mode

@@ -101,6 +101,9 @@
 		<Unit filename="/tmp/tmp.n6jBnPQEUa/src/definitions.hpp">
 			<Option target="column"/>
 		</Unit>
+		<Unit filename="/tmp/tmp.n6jBnPQEUa/src/globals.hpp">
+			<Option target="column"/>
+		</Unit>
 		<Unit filename="/tmp/tmp.n6jBnPQEUa/src/group.cpp">
 			<Option target="column"/>
 		</Unit>

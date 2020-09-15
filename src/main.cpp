@@ -1,9 +1,14 @@
 #include "definitions.hpp"
+#include "globals.hpp"
+
+std::atomic<bool> STOP;
 
 int main(int argc, char* argv[])
 {
 	try
 	{
+		STOP = false;
+
 		std::cout << "Welcome to PiProject!" << std::endl;
 		std::cout << "C++ version: " << __cplusplus << std::endl;
 
@@ -12,10 +17,12 @@ int main(int argc, char* argv[])
 		std::cout << "wiringPiSetup();\n" << std::endl;
 
 		objectHandler handler = objectHandler();
-		handler.init(&stop);
+		handler.init(&STOP);
 		std::cout << "objectHandler\n" << std::endl;
 
 		settings settings("config/config.xml");
+
+//		run_test(&handler, &settings);
 
 //		boost::thread poll(boost::bind(poll_loop, &handler, &settings));
 		std::thread poll(poll_loop, &handler, &settings);
@@ -30,6 +37,8 @@ int main(int argc, char* argv[])
 
 int run_test(objectHandler* handler, settings* setting)
 {
+	std::cerr << "running test: single node, in/out-puts, groups, triggers, saving, loading";
+
 //	std::string host = "192.168.2.2";
 //	std::cout << "running test\n" << std::endl;
 //
@@ -47,10 +56,14 @@ int run_test(objectHandler* handler, settings* setting)
 	handler->getNode(nID)->add_input(0, INT_EDGE_BOTH, PUD_DOWN, "DIP");
 	handler->getNode(nID)->add_output(7, 0, "LED");
 
+	std::cerr << "Added in/out puts" << std::endl;
+
 	unsigned int gID = (unsigned int) handler->createGroup("testgroup", INPUT);
 	unsigned int sgID = (unsigned int) handler->createGroup("testgroup2", INPUT);
 	handler->getGroup(sgID)->addPin(0, nID);
 	handler->getGroup(gID)->addPin(1, nID);
+
+	std::cerr << "Created groups" << std::endl;
 
 	unsigned int tID = (unsigned int) handler->createTrigger("testtrigger");
 	handler->getTrigger(tID)->addPin(7, nID);
@@ -59,11 +72,23 @@ int run_test(objectHandler* handler, settings* setting)
 
 	handler->getTrigger(tID)->setGCond(1, AND);
 
+	std::cerr << "Created triggers" << std::endl;
+
 	if (!setting->save(*handler))
 		std::cerr << "saving settings failed" << std::endl;
 
-	if (!setting->load(handler, &stop))
+	std::cerr << "Saved settings" << std::endl;
+	std::cout << handler->getTriggers().size() << std::endl;
+
+	if (!setting->load(*handler, &STOP))
 		std::cerr << "loading settings failed" << std::endl;
+
+	std::cerr << "Loaded settings" << std::endl;
+
+	std::cerr << "main.cpp: " << handler->getTriggers().size() << std::endl;
+
+	handler->getTrigger(tID)->delPin(7, nID);
+	handler->getTrigger(tID)->delGroup(gID);
 
 	std::cout << "test completed" << std::endl;
 	return 1;
@@ -80,7 +105,7 @@ void ask(const std::string &question, T* response)
 void poll_loop(objectHandler *handler, settings* setting)
 {
 	std::cout << "Poll loop was activated!" << std::endl;
-	while (stop == 0)
+	while (STOP == 0)
 	{
 		int ans;
 
@@ -90,7 +115,7 @@ void poll_loop(objectHandler *handler, settings* setting)
 		{
 			case 0: // Stop
 			{
-				stop = 1;
+				STOP = 1;
 				sleep(1);
 				break;
 			}
@@ -143,7 +168,7 @@ void poll_loop(objectHandler *handler, settings* setting)
 			{
 				try
 				{
-					if (!setting->load(handler, &stop))
+					if (!setting->load(*handler, &STOP))
 						std::cerr << "loading settings failed" << std::endl;
 				} catch (boost::archive::archive_exception &e)
 				{
@@ -192,6 +217,11 @@ void poll_loop(objectHandler *handler, settings* setting)
 				ask(tID, &triggerID);
 
 				handler->getTrigger(triggerID)->addPin(wpi, nodeID);
+				break;
+			}
+			case 99: // run test
+			{
+				run_test(handler, setting);
 				break;
 			}
 			default:
