@@ -19,23 +19,23 @@ void trigger::detect()
 	std::chrono::nanoseconds timeout_ns (std::chrono::duration_cast<std::chrono::nanoseconds>(
 			std::chrono::milliseconds(this->timeout)));
 
-	bool cond;
-	bool pcond;
-	bool gcond;
+	bool condition;
+	bool pinCondition;
+	bool groupCondition;
 
 	// Run loop while the process is running and this trigger is active
 	while (!STOP && this->detection)
 	{
-		cond = true;
-		pcond = true;
-		gcond = true;
+        condition = true;
+        pinCondition = true;
+        groupCondition = true;
 
-		unsigned long numPins = this->ipins.size();
-		unsigned long numGroups = this->igroups.size();
+		unsigned long numPins = this->inputPins.size();
+		unsigned long numGroups = this->inputGroups.size();
 
 		// Evaluate pins
 		if (numPins > 0)
-		{   cond = this->evalPins(this->ipins, cond);   }
+		{ condition = this->evaluatePins(this->inputPins, condition);   }
 
 		// Evaluate groups
 		if (numGroups > 0)
@@ -43,36 +43,36 @@ void trigger::detect()
 			if (numGroups > 1)
 			{
 				// Get state of group 0
-				gcond = this->evalPins(this->handler->getGroup(this->igroups[0].id)->getPins(), gcond);
+				groupCondition = this->evaluatePins(this->handler->getGroup(this->inputGroups[0].id)->getPins(), groupCondition);
 
 				// Get state of other groups
 				for (unsigned int i = 1; i < numGroups; i++)
 				{
-					pcond = this->evalPins(this->handler->getGroup(this->igroups[i].id)->getPins(), pcond);
+                    pinCondition = this->evaluatePins(this->handler->getGroup(this->inputGroups[i].id)->getPins(), pinCondition);
 
 					// Check the group's condition
-					gcond = this->switchCond(this->igroups[i].condition, gcond, pcond);
+					groupCondition = this->switchConditions(this->inputGroups[i].condition, groupCondition, pinCondition);
 				}
 			}
 			else // The state of the first group will be equal to that as if it wasn't even a group
-			{   gcond = this->evalPins(this->handler->getGroup(this->igroups[0].id)->getPins(), gcond);    }
+			{ groupCondition = this->evaluatePins(this->handler->getGroup(this->inputGroups[0].id)->getPins(), groupCondition);    }
 		}
 
 		// Determine final state of trigger
 		if (numPins >= 1 && numGroups >= 1)         // When trigger holds both pins and groups
-		{   cond = cond && gcond;   }
-		else if (numPins >= 1 && numGroups == 0)    // When trigger only holds pins (cond already correct)
+		{ condition = condition && groupCondition;   }
+		else if (numPins >= 1 && numGroups == 0)    // When trigger only holds pins (condition already correct)
 		{	;   }
 		else if (numPins == 0 && numGroups >= 1)    // When trigger only holds groups
-		{   cond = gcond;   }
+		{ condition = groupCondition;   }
 		else                                        // When trigger is empty
-		{   cond = false;   }
+		{ condition = false;   }
 
 		// When input (set at the default of the previous two switches) or the outcome of the logic is true
-		if (cond)
-		{   this->setOState(HIGH);  }
+		if (condition)
+		{ this->setOutputState(HIGH);  }
 		else
-		{   this->setOState(LOW);   }
+		{ this->setOutputState(LOW);   }
 
 		std::this_thread::sleep_for(timeout_ns);
 	}
@@ -85,15 +85,15 @@ void trigger::addPin(int wpi, unsigned int nID)
 	// get gpin mode, then save gpin to correct vector
 	if (this->handler->getNode(nID)->get_mode(wpi) == OUTPUT)
 	{
-		this->opins.emplace_back(pin());
-		this->opins.back().wpi = wpi;
-		this->opins.back().id = nID;
+		this->outputPins.emplace_back(pin());
+		this->outputPins.back().wpi = wpi;
+		this->outputPins.back().id = nID;
 	}
 	else
 	{
-		this->ipins.emplace_back(pin());
-		this->ipins.back().wpi = wpi;
-		this->ipins.back().id = nID;
+		this->inputPins.emplace_back(pin());
+		this->inputPins.back().wpi = wpi;
+		this->inputPins.back().id = nID;
 	}
 }
 
@@ -101,26 +101,26 @@ void trigger::addGroup(unsigned int gID)
 {
 	if (this->handler->getGroup(gID)->getMode() == OUTPUT)
 	{
-		this->ogroups.emplace_back(tgroup());
-		this->ogroups.back().id = gID;
+		this->outputGroups.emplace_back(tgroup());
+		this->outputGroups.back().id = gID;
 	}
 	else
 	{
-		this->igroups.emplace_back(tgroup());
-		this->igroups.back().id = gID;
+		this->inputGroups.emplace_back(tgroup());
+		this->inputGroups.back().id = gID;
 	}
 }
 
-void trigger::setPCond(unsigned int pos, short cond)
-{   this->ipins.at(pos).condition = cond;   }
+void trigger::setPinCondition(unsigned int pos, conditions cond)
+{   this->inputPins.at(pos).condition = cond;   }
 
-void trigger::setGCond(unsigned int pos, short cond)
-{   this->igroups.at(pos).condition = cond; }
+void trigger::setGroupCondition(unsigned int pos, conditions cond)
+{   this->inputGroups.at(pos).condition = cond; }
 
-void trigger::delPin(int wpi, unsigned int nID)
+void trigger::deletePin(int wpi, unsigned int nID)
 {
 	// Get appropriate vector for pin (in/output vector) based on pin mode registered in node
-	std::vector<pin>* tmp = this->handler->getNode(nID)->get_mode(wpi) == OUTPUT ? &this->opins : &this->ipins;
+	std::vector<pin>* tmp = this->handler->getNode(nID)->get_mode(wpi) == OUTPUT ? &this->outputPins : &this->inputPins;
 
 	// Delete entry from vector
 	for (unsigned int i = 0; i < tmp->size(); i ++)
@@ -139,10 +139,10 @@ void trigger::delPin(int wpi, unsigned int nID)
 	}
 }
 
-void trigger::delGroup(unsigned int gID)
+void trigger::deleteGroup(unsigned int gID)
 {
 	// Get appropriate vector for group (in/output vector) based on group mode
-	std::vector<tgroup>* tmp = this->handler->getGroup(gID)->getMode() == OUTPUT ? &this->ogroups : &this->igroups;
+	std::vector<tgroup>* tmp = this->handler->getGroup(gID)->getMode() == OUTPUT ? &this->outputGroups : &this->inputGroups;
 
 	// Delete entry from vector
 	for (unsigned int i = 0; i < tmp->size(); i ++)
@@ -174,7 +174,7 @@ void trigger::toggleDetect()
 bool trigger::getDetectState()
 {   return this->detection; }
 
-bool trigger::evalPins(std::vector<pin> pins, bool cond)
+bool trigger::evaluatePins(std::vector<pin> pins, bool cond)
 {
 	unsigned long numPins = pins.size();
 
@@ -185,9 +185,9 @@ bool trigger::evalPins(std::vector<pin> pins, bool cond)
 
 		for (unsigned int j = 0; j < numPins; j++)
 		{
-			tmp = &this->ipins[j];
-			cond = this->switchCond(pins[j].condition, cond,
-			                        !this->handler->getNode(tmp->id)->get_digital_input_state(tmp->wpi));
+			tmp = &this->inputPins[j];
+			cond = this->switchConditions(pins[j].condition, cond,
+                                          !this->handler->getNode(tmp->id)->get_digital_input_state(tmp->wpi));
 		}
 	}
 	else if (numPins == 1)
@@ -196,53 +196,53 @@ bool trigger::evalPins(std::vector<pin> pins, bool cond)
 	return cond;
 }
 
-bool trigger::switchCond(short conditional, bool pcond, bool state)
+bool trigger::switchConditions(short conditional, bool pinCondition, bool state)
 {
 	switch (conditional)
 	{
 		case AND:
 		{
-			pcond = (state && pcond);
+            pinCondition = (state && pinCondition);
 			break;
 		}
 		case NAND:
 		{
-			pcond = (state == 0 || !pcond);
+            pinCondition = (state == 0 || !pinCondition);
 			break;
 		}
 		case OR:
 		{
-			pcond = (state || pcond);
+            pinCondition = (state || pinCondition);
 			break;
 		}
 		case NOR:
 		{
-			pcond = !(state || pcond);
+            pinCondition = !(state || pinCondition);
 			break;
 		}
 		case XOR:
 		{
-			pcond = (state != pcond);
+            pinCondition = (state != pinCondition);
 			break;
 		}
 		case XNOR:
 		{
-			pcond = ((state != 0) == pcond);
+            pinCondition = ((state != 0) == pinCondition);
 			break;
 		}
 		default:
 		{   break;  }
 	}
 
-	return pcond;
+	return pinCondition;
 }
 
-void trigger::setOState(int newState)
+void trigger::setOutputState(int newState)
 {
-	for (pin opin : this->opins)
+	for (pin opin : this->outputPins)
 	{   this->handler->getNode(opin.id)->set_output_state(opin.wpi, newState);  }
 
-	for (tgroup ogroup : this->ogroups)
+	for (const tgroup& ogroup : this->outputGroups)
 	{
 		std::vector<pin> gpin(this->handler->getGroup(ogroup.id)->getPins());
 		for (pin opin : gpin)

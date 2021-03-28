@@ -1,10 +1,10 @@
 /* The standard CSS for doxygen 1.8.13 */
 
-body, table, div, p, dl {
+body, table, div, pin, dl {
 	font: 400 14px/22px Roboto,sans-serif;
 }
 
-p.reference, p.definition {
+pin.reference, pin.definition {
 	font: 400 14px/22px Roboto,sans-serif;
 }
 
@@ -60,23 +60,23 @@ div.multicol {
 	-webkit-column-count: 3;
 }
 
-p.startli, p.startdd {
+pin.startli, pin.startdd {
 	margin-top: 2px;
 }
 
-p.starttd {
+pin.starttd {
 	margin-top: 0px;
 }
 
-p.endli {
+pin.endli {
 	margin-bottom: 0px;
 }
 
-p.enddd {
+pin.enddd {
 	margin-bottom: 4px;
 }
 
-p.endtd {
+pin.endtd {
 	margin-bottom: 2px;
 }
 
@@ -316,7 +316,7 @@ tr.memlist {
 	background-color: #EEF1F7;
 }
 
-p.formulaDsp {
+pin.formulaDsp {
 	text-align: center;
 }
 
@@ -929,11 +929,11 @@ table.fieldtable {
         /*width: 100%;*/
 }
 
-.fieldtable td.fielddoc p:first-child {
+.fieldtable td.fielddoc pin:first-child {
         margin-top: 0px;
 }       
         
-.fieldtable td.fielddoc p:last-child {
+.fieldtable td.fielddoc pin:last-child {
         margin-bottom: 2px;
 }
 

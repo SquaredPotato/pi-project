@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.0)
 project(column)
 
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -Wall -lm"   )
-set(CMAKE_REQUIRED_FLAGS -std=c++17)
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20 -Wall -lm"   )
+set(CMAKE_REQUIRED_FLAGS -std=c++20)
 
-if (WIN32)
+#[[if (WIN32)
 
 	# boost librarys
 	set (BOOST_ROOT         "C:/Program Files/boost"                )
@@ -22,12 +22,10 @@ else()
 	set (BOOST_INCLUDEDIR	"/usr/local/boost/1_70_0/include"	)
 	set (BOOST_LIBRARYDIR	"/usr/local/boost/1_70_0/lib"		)
 
-endif ()
+endif ()]]
 
 
-find_package(Boost 1.70.0 COMPONENTS REQUIRED)
-
-link_directories(${LIBMYSQLCLIENT_LIBRARIES})
+#[[find_package(Boost 1.70.0 COMPONENTS REQUIRED)
 
 if (NOT Boost_FOUND)
     message (FATAL_ERROR "Fatal error: Boost (version >= 1.70.0) required."     )
@@ -38,7 +36,7 @@ else()
 
     include_directories (${Boost_INCLUDE_DIRS})
     link_directories (${Boost_LIBRARY_DIRS})
-endif()
+endif()]]
 
 file (GLOB SOURCE_FILES
         "src/*.hpp"
@@ -53,7 +51,7 @@ target_link_libraries(column
 		stdc++fs
 		wiringPi
 		pthread
-		boost_serialization
-		boost_system
-		boost_filesystem
+		#boost_serialization
+		#boost_system
+		#boost_filesystem
 )

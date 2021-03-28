@@ -89,7 +89,7 @@ $(document).ready(function(){initNavTree('classtrigger.html','');});
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="trigger_8hpp_source.html">trigger.hpp</a>&gt;</code></p>
+<pin><code>#include &lt;<a class="el" href="trigger_8hpp_source.html">trigger.hpp</a>&gt;</code></pin>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -102,15 +102,15 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa80e42888adc3fa3acee13537f7e3b55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86924133e065171d1382881c618591c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtrigger.html#a86924133e065171d1382881c618591c6">addGroup</a> (unsigned int id)</td></tr>
 <tr class="separator:a86924133e065171d1382881c618591c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a071108e8888c74c9904b1046252effac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtrigger.html#a071108e8888c74c9904b1046252effac">setPCond</a> (unsigned int pos, short cond)</td></tr>
+<tr class="memitem:a071108e8888c74c9904b1046252effac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtrigger.html#a071108e8888c74c9904b1046252effac">setPinCondition</a> (unsigned int pos, short cond)</td></tr>
 <tr class="memdesc:a071108e8888c74c9904b1046252effac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets pin condition by position in the internal vector to one of <a class="el" href="pin_8hpp.html#ae1271a8dd387625d64abd75d7c443a38">conds</a> condtions.  <a href="#a071108e8888c74c9904b1046252effac">More...</a><br /></td></tr>
 <tr class="separator:a071108e8888c74c9904b1046252effac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a1dc931392dc0c082df7d95e9fc9cfa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtrigger.html#a6a1dc931392dc0c082df7d95e9fc9cfa">setGCond</a> (unsigned int pos, short cond)</td></tr>
+<tr class="memitem:a6a1dc931392dc0c082df7d95e9fc9cfa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtrigger.html#a6a1dc931392dc0c082df7d95e9fc9cfa">setGroupCondition</a> (unsigned int pos, short cond)</td></tr>
 <tr class="memdesc:a6a1dc931392dc0c082df7d95e9fc9cfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets pin condition by position in the internal vector to one of <a class="el" href="pin_8hpp.html#ae1271a8dd387625d64abd75d7c443a38">conds</a> condtions.  <a href="#a6a1dc931392dc0c082df7d95e9fc9cfa">More...</a><br /></td></tr>
 <tr class="separator:a6a1dc931392dc0c082df7d95e9fc9cfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e84486152b97d56cbf443f27093dbc5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtrigger.html#a3e84486152b97d56cbf443f27093dbc5">delPin</a> (int wpi, unsigned int <a class="el" href="strings_8hpp.html#a782e58c6b5e2b2b46723f53cbb0c5d88">nID</a>)</td></tr>
+<tr class="memitem:a3e84486152b97d56cbf443f27093dbc5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtrigger.html#a3e84486152b97d56cbf443f27093dbc5">deletePin</a> (int wpi, unsigned int <a class="el" href="strings_8hpp.html#a782e58c6b5e2b2b46723f53cbb0c5d88">nID</a>)</td></tr>
 <tr class="separator:a3e84486152b97d56cbf443f27093dbc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd33257934faea0ee51b2ba8f9040459"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtrigger.html#abd33257934faea0ee51b2ba8f9040459">delGroup</a> (unsigned int id)</td></tr>
+<tr class="memitem:abd33257934faea0ee51b2ba8f9040459"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtrigger.html#abd33257934faea0ee51b2ba8f9040459">deleteGroup</a> (unsigned int id)</td></tr>
 <tr class="separator:abd33257934faea0ee51b2ba8f9040459"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add78b00d410f74ae4b39d3b6403da7d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtrigger.html#add78b00d410f74ae4b39d3b6403da7d7">toggleDetect</a> ()</td></tr>
 <tr class="separator:add78b00d410f74ae4b39d3b6403da7d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -161,7 +161,7 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Adds a group by group ID </p>
+<pin>Adds a group by group ID </pin>
 
 </div>
 </div>
@@ -190,18 +190,18 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Adds a pin by wiringPi numbering scheme ID, and the node ID the pin belongs to </p>
+<pin>Adds a pin by wiringPi numbering scheme ID, and the node ID the pin belongs to </pin>
 
 </div>
 </div>
 <a id="abd33257934faea0ee51b2ba8f9040459"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abd33257934faea0ee51b2ba8f9040459">&#9670;&nbsp;</a></span>delGroup()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#abd33257934faea0ee51b2ba8f9040459">&#9670;&nbsp;</a></span>deleteGroup()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void trigger::delGroup </td>
+          <td class="memname">void trigger::deleteGroup </td>
           <td>(</td>
           <td class="paramtype">unsigned int&#160;</td>
           <td class="paramname"><em>id</em></td><td>)</td>
@@ -209,18 +209,18 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Deletes a group by ID </p>
+<pin>Deletes a group by ID </pin>
 
 </div>
 </div>
 <a id="a3e84486152b97d56cbf443f27093dbc5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3e84486152b97d56cbf443f27093dbc5">&#9670;&nbsp;</a></span>delPin()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e84486152b97d56cbf443f27093dbc5">&#9670;&nbsp;</a></span>deletePin()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void trigger::delPin </td>
+          <td class="memname">void trigger::deletePin </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>wpi</em>, </td>
@@ -238,7 +238,7 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Deletes a pin by wpi and node ID </p>
+<pin>Deletes a pin by wpi and node ID </pin>
 
 </div>
 </div>
@@ -256,7 +256,7 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns whether the trigger is currently running </p>
+<pin>Returns whether the trigger is currently running </pin>
 
 </div>
 </div>
@@ -286,7 +286,7 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Initializes the trigger, needed for easy map adding. </p>
+<pin>Initializes the trigger, needed for easy map adding. </pin>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">handler</td><td>ObjectHandler, required for getting pin information </td></tr>
@@ -298,13 +298,13 @@ Friends</h2></td></tr>
 </div>
 </div>
 <a id="a6a1dc931392dc0c082df7d95e9fc9cfa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6a1dc931392dc0c082df7d95e9fc9cfa">&#9670;&nbsp;</a></span>setGCond()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a1dc931392dc0c082df7d95e9fc9cfa">&#9670;&nbsp;</a></span>setGroupCondition()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void trigger::setGCond </td>
+          <td class="memname">void trigger::setGroupCondition </td>
           <td>(</td>
           <td class="paramtype">unsigned int&#160;</td>
           <td class="paramname"><em>pos</em>, </td>
@@ -323,7 +323,7 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sets pin condition by position in the internal vector to one of <a class="el" href="pin_8hpp.html#ae1271a8dd387625d64abd75d7c443a38">conds</a> condtions. </p>
+<pin>Sets pin condition by position in the internal vector to one of <a class="el" href="pin_8hpp.html#ae1271a8dd387625d64abd75d7c443a38">conds</a> condtions. </pin>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pos</td><td>Position in internal map </td></tr>
@@ -335,13 +335,13 @@ Friends</h2></td></tr>
 </div>
 </div>
 <a id="a071108e8888c74c9904b1046252effac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a071108e8888c74c9904b1046252effac">&#9670;&nbsp;</a></span>setPCond()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a071108e8888c74c9904b1046252effac">&#9670;&nbsp;</a></span>setPinCondition()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void trigger::setPCond </td>
+          <td class="memname">void trigger::setPinCondition </td>
           <td>(</td>
           <td class="paramtype">unsigned int&#160;</td>
           <td class="paramname"><em>pos</em>, </td>
@@ -360,7 +360,7 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sets pin condition by position in the internal vector to one of <a class="el" href="pin_8hpp.html#ae1271a8dd387625d64abd75d7c443a38">conds</a> condtions. </p>
+<pin>Sets pin condition by position in the internal vector to one of <a class="el" href="pin_8hpp.html#ae1271a8dd387625d64abd75d7c443a38">conds</a> condtions. </pin>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pos</td><td>Position in internal map </td></tr>
@@ -385,7 +385,7 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Turns the trigger on or of </p>
+<pin>Turns the trigger on or of </pin>
 
 </div>
 </div>

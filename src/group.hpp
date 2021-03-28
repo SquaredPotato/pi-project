@@ -4,8 +4,6 @@
 #include <array>
 #include <vector>
 #include <iostream>
-#include <boost/serialization/access.hpp>
-#include <boost/serialization/nvp.hpp>
 #include "pin.cpp"
 
 class objectHandler;
@@ -70,18 +68,6 @@ private:
 	objectHandler* handler;
 
 	std::vector<pin> pins;
-
-	//for saving
-	friend class boost::serialization::access;
-	template<class Archive>
-	void serialize(Archive & ar, unsigned int version)
-	{
-		ar  & boost::serialization::make_nvp("id", id)
-			& boost::serialization::make_nvp("name", name)
-			& boost::serialization::make_nvp("mode", mode)
-			& boost::serialization::make_nvp("pins", pins)
-			& boost::serialization::make_nvp("state", state);
-	}
 };
 
 #endif //COLUMN_GROUP_HPP

@@ -1,13 +1,12 @@
 #ifndef COLUMN_PIN_HPP
 #define COLUMN_PIN_HPP
 
-#include <boost/serialization/nvp.hpp>
 #include <wiringPi.h>
 #include <string>
 #include <vector>
 
 /*! Conditions for groups and pins in \link #trigger \endlink */
-enum conds
+enum conditions
 {
 	AND,
 	NAND,
@@ -27,13 +26,6 @@ struct pin
 	short condition = OR;
 	unsigned int id;
 public:
-	template<class Archive>
-	void serialize(Archive& ar, const unsigned int version)
-	{
-		ar  & boost::serialization::make_nvp("wpi", wpi)
-			& boost::serialization::make_nvp("condition", condition)
-			& boost::serialization::make_nvp("id", id);
-	}
 };
 
 /*!
@@ -42,18 +34,8 @@ public:
  */
 struct npin
 {
-	int p = 0, s = 0, e = INT_EDGE_SETUP, ud = PUD_OFF, pw = 0;
+	int pin = 0, state = 0, edge = INT_EDGE_SETUP, pulldown = PUD_OFF, pwm = 0;
 	std::string name = "";
-	template<class Archive>
-	void serialize(Archive & ar, unsigned int version)
-	{
-		ar  & boost::serialization::make_nvp("pin", p)
-			& boost::serialization::make_nvp("state", s)
-			& boost::serialization::make_nvp("edge", e)
-			& boost::serialization::make_nvp("updown", ud)
-			& boost::serialization::make_nvp("pwm", pw)
-			& boost::serialization::make_nvp("name", name);
-	}
 };
 
 /*!
@@ -66,12 +48,6 @@ struct tgroup
 	short condition = OR;
 	std::vector<pin> gpin = {};
 public:
-	template<class Archive>
-	void serialize(Archive& ar, const unsigned int version)
-	{
-		ar  & boost::serialization::make_nvp("id", id)
-			& boost::serialization::make_nvp("condition", condition);
-	}
 };
 
 #endif //COLUMN_PIN_HPP

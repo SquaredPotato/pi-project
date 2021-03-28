@@ -4,7 +4,6 @@
 #include <vector>
 #include <string>
 #include <utility>
-#include <boost/any.hpp>
 #include "node.hpp"
 #include "group.hpp"
 #include "trigger.hpp"
@@ -96,8 +95,7 @@ public:
 	/*! Returns whether this node is the master or not */
 	bool getMaster();
 private:
-	friend class boost::serialization::access;
-	friend class settings;
+    friend class settings;
 
 	std::atomic_bool *stop;
 
@@ -112,16 +110,6 @@ private:
 	// is this the master bool, and local id
 	bool master = true;
 	unsigned int lID;
-
-	template<class Archive>
-	void serialize(Archive & ar, unsigned int version)
-	{
-		ar & boost::serialization::make_nvp("master", master)
-		   & boost::serialization::make_nvp("lID", lID)
-		   & boost::serialization::make_nvp("nMap", nMap)
-		   & boost::serialization::make_nvp("gMap", gMap)
-		   & boost::serialization::make_nvp("tMap", tMap);
-	}
 };
 
 #endif //COLUMN_OBJECTHANDLER_HPP

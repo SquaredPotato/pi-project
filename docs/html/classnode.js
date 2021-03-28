@@ -4,7 +4,7 @@ var classnode =
     [ "add_input", "classnode.html#a6af0721dd2e9ebfe05d9e226e5295dd6", null ],
     [ "add_output", "classnode.html#a05db0324e5897dd49ab32978b2a4c83f", null ],
     [ "add_pwm_output", "classnode.html#a45faa196abbaf75a4a2a35602fe936da", null ],
-    [ "delPin", "classnode.html#a5bf2ff519627a97df9d4c15fba4ac640", null ],
+    [ "deletePin", "classnode.html#a5bf2ff519627a97df9d4c15fba4ac640", null ],
     [ "get_address", "classnode.html#ad813a9e2b1a9e287f860e89a4b2600a2", null ],
     [ "get_digital_input_state", "classnode.html#ad9bf36c2b0c396a0f6fd54f2d6110e30", null ],
     [ "get_edge", "classnode.html#a467873d6e7cfa12fccf162db20768b7f", null ],

@@ -5,8 +5,6 @@
 #include <boost/asio.hpp>
 #include <array>
 #include <map>
-#include <boost/serialization/access.hpp>
-#include <boost/serialization/nvp.hpp>
 #include "pin.cpp"
 //#include "I2CDevice.hpp
 
@@ -14,7 +12,6 @@ class node
 {
 public:
 	node();
-	friend class boost::serialization::access;
 
 	/*!
 	 * \brief Initialises the node
@@ -79,31 +76,20 @@ private:
 	unsigned int id;
 
 	/*\
-	|*|  pm: pwm mode
-	|*|  pc: pwm clock
+	|*|  pwm_mode: pwm mode
+	|*|  pwm_clock: pwm clock
 	|*|  pr: pwm range
-	|*|  pw: pwm percentage / stored in pin.cpp::npin
+	|*|  pwm: pwm percentage / stored in pin.cpp::npin
 	|*|
-	|*|  p: pin mode
+	|*|  pin: pin mode
 	|*|  s: state of said gpin
 	|*|  e: edge (for setting up triggers, unimplemented as of now)
-	|*|  ud: upDown resistor
+	|*|  pulldown: upDown resistor
 	\*/
 
-	int pm, pc;
+	int pwm_mode, pwm_clock;
 	unsigned int pr = 0;
 	std::map<int, npin> pins;
-
-	// Setting archive
-	template<class Archive>
-	void serialize(Archive & ar, unsigned int version)
-	{
-		ar  & boost::serialization::make_nvp("id", id)
-			& boost::serialization::make_nvp("name", name)
-			& boost::serialization::make_nvp("location", location)
-			& boost::serialization::make_nvp("pr", pr)
-			& boost::serialization::make_nvp("pins", pins);
-	}
 };
 
 

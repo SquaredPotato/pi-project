@@ -4,7 +4,7 @@ var classobject_handler =
     [ "createGroup", "classobject_handler.html#a2a8ed031d6a4a3389f50065cc74eff8b", null ],
     [ "createNode", "classobject_handler.html#a1f78d4cb558eb05089cf72c91d7437e4", null ],
     [ "createTrigger", "classobject_handler.html#ab6ead6b6328a1391ab050d6281878521", null ],
-    [ "delGroup", "classobject_handler.html#a011c8f3f601e7c20c317854115a7b280", null ],
+    [ "deleteGroup", "classobject_handler.html#a011c8f3f601e7c20c317854115a7b280", null ],
     [ "delNode", "classobject_handler.html#a7b50455d1415eecb6145e057a1633d8e", null ],
     [ "delTrigger", "classobject_handler.html#a03a3a30785b7f97cc57b583779e1785f", null ],
     [ "getFreeGID", "classobject_handler.html#ace3abc8f764aca90976c1e369ab0bfea", null ],

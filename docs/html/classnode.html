@@ -89,7 +89,7 @@ $(document).ready(function(){initNavTree('classnode.html','');});
 </div><!--header-->
 <div class="contents">
 
-<p><code>#include &lt;<a class="el" href="node_8hpp_source.html">node.hpp</a>&gt;</code></p>
+<pin><code>#include &lt;<a class="el" href="node_8hpp_source.html">node.hpp</a>&gt;</code></pin>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -98,7 +98,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9dc9ac555dff3526f6b4daebbce44d87"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode.html#a9dc9ac555dff3526f6b4daebbce44d87">init</a> (std::string <a class="el" href="classnode.html#a16fa2bd1b1447700de87120b2ed1a74f">name</a>, int id, std::string address)</td></tr>
 <tr class="memdesc:a9dc9ac555dff3526f6b4daebbce44d87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialises the node.  <a href="#a9dc9ac555dff3526f6b4daebbce44d87">More...</a><br /></td></tr>
 <tr class="separator:a9dc9ac555dff3526f6b4daebbce44d87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5bf2ff519627a97df9d4c15fba4ac640"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode.html#a5bf2ff519627a97df9d4c15fba4ac640">delPin</a> (int wpi)</td></tr>
+<tr class="memitem:a5bf2ff519627a97df9d4c15fba4ac640"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode.html#a5bf2ff519627a97df9d4c15fba4ac640">deletePin</a> (int wpi)</td></tr>
 <tr class="separator:a5bf2ff519627a97df9d4c15fba4ac640"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6af0721dd2e9ebfe05d9e226e5295dd6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classnode.html#a6af0721dd2e9ebfe05d9e226e5295dd6">add_input</a> (const int wpi, int edge, int pUpDown, std::string <a class="el" href="classnode.html#a16fa2bd1b1447700de87120b2ed1a74f">name</a>)</td></tr>
 <tr class="memdesc:a6af0721dd2e9ebfe05d9e226e5295dd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an input pin to this node.  <a href="#a6af0721dd2e9ebfe05d9e226e5295dd6">More...</a><br /></td></tr>
@@ -202,7 +202,7 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Adds an input pin to this node. </p>
+<pin>Adds an input pin to this node. </pin>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">wpi</td><td>Pin index according to the wiringPi numbering scheme </td></tr>
@@ -247,7 +247,7 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Adds an output pin to this node. </p>
+<pin>Adds an output pin to this node. </pin>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">wpi</td><td>wpi Pin index according to the wiringPi numbering scheme </td></tr>
@@ -306,13 +306,13 @@ Friends</h2></td></tr>
 </div>
 </div>
 <a id="a5bf2ff519627a97df9d4c15fba4ac640"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5bf2ff519627a97df9d4c15fba4ac640">&#9670;&nbsp;</a></span>delPin()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bf2ff519627a97df9d4c15fba4ac640">&#9670;&nbsp;</a></span>deletePin()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void node::delPin </td>
+          <td class="memname">void node::deletePin </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>wpi</em></td><td>)</td>
@@ -320,7 +320,7 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Deletes a pin using the wiringPi scheme index </p>
+<pin>Deletes a pin using the wiringPi scheme index </pin>
 
 </div>
 </div>
@@ -338,7 +338,7 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns ip address of this node </p>
+<pin>Returns ip address of this node </pin>
 
 </div>
 </div>
@@ -357,7 +357,7 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns HIGH or LOW depending on input state </p>
+<pin>Returns HIGH or LOW depending on input state </pin>
 
 </div>
 </div>
@@ -376,7 +376,7 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns the edge on which the pin event should trigger </p>
+<pin>Returns the edge on which the pin event should trigger </pin>
 
 </div>
 </div>
@@ -395,7 +395,7 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns whether the pin is in INPUT, OUTPUT or PWM_OUTPUT mode </p>
+<pin>Returns whether the pin is in INPUT, OUTPUT or PWM_OUTPUT mode </pin>
 
 </div>
 </div>
@@ -413,7 +413,7 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns node ID of this node </p>
+<pin>Returns node ID of this node </pin>
 
 </div>
 </div>
@@ -432,7 +432,7 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns HIGH or LOW depending saved state </p>
+<pin>Returns HIGH or LOW depending saved state </pin>
 
 </div>
 </div>
@@ -468,7 +468,7 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Initialises the node. </p>
+<pin>Initialises the node. </pin>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>Name for the node </td></tr>
@@ -505,7 +505,7 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Sets output to either HIGH or LOW to pin wpi </p>
+<pin>Sets output to either HIGH or LOW to pin wpi </pin>
 
 </div>
 </div>

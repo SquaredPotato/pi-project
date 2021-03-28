@@ -1,14 +1,12 @@
 #include "definitions.hpp"
 #include "globals.hpp"
 
-std::atomic<bool> STOP;
+std::atomic<bool> STOP = false;
 
 int main(int argc, char* argv[])
 {
 	try
 	{
-		STOP = false;
-
 		std::cout << "Welcome to PiProject!" << std::endl;
 		std::cout << "C++ version: " << __cplusplus << std::endl;
 
@@ -24,7 +22,6 @@ int main(int argc, char* argv[])
 
 //		run_test(&handler, &settings);
 
-//		boost::thread poll(boost::bind(poll_loop, &handler, &settings));
 		std::thread poll(poll_loop, &handler, &settings);
 
 		poll.join();
@@ -70,7 +67,7 @@ int run_test(objectHandler* handler, settings* setting)
 	handler->getTrigger(tID)->addGroup(gID);
 	handler->getTrigger(tID)->addGroup(sgID);
 
-	handler->getTrigger(tID)->setGCond(1, AND);
+    handler->getTrigger(tID)->setGroupCondition(1, AND);
 
 	std::cerr << "Created triggers" << std::endl;
 
@@ -87,8 +84,8 @@ int run_test(objectHandler* handler, settings* setting)
 
 	std::cerr << "main.cpp: " << handler->getTriggers().size() << std::endl;
 
-	handler->getTrigger(tID)->delPin(7, nID);
-	handler->getTrigger(tID)->delGroup(gID);
+    handler->getTrigger(tID)->deletePin(7, nID);
+    handler->getTrigger(tID)->deleteGroup(gID);
 
 	std::cout << "test completed" << std::endl;
 	return 1;

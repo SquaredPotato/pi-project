@@ -11,7 +11,6 @@
 #include <map>
 #include <memory>
 #include <thread>
-#include <boost/thread.hpp>
 
 #include "objectHandler.hpp"
 #include "settings.hpp"
